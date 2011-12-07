@@ -1,0 +1,19 @@
+<h1>添加孔院</h1>
+<%= form_for @confucius_institute do |f| %>
+  <%= render "shared/error_messages", :target => @confucius_institute %>
+  <fieldset class="form-generic">
+    <ul>
+      <li><label>国家：</label><%= f.select :country_id, option_groups_from_collection_for_select(all_continents, :countries, :name, :id, :name) %></li>
+    </ul>
+    <ul>
+      <li><label>名称：</label><%= f.text_field :name, :class => 'text-field' %></li>
+    </ul>
+    <ul>
+      <li><label>规模：</label><%= f.select :scale, options_for_scale %></li>
+    </ul>
+    <div class="operation-generic">
+      <%= link_to '添加', '#', :onclick => "submitForm('new_confucius_institute')", :class => 'button' %>
+      <%= link_to '返回孔院列表', confucius_institutes_path, :class => 'button' %>
+    </div>
+  </fieldset>
+<% end %>

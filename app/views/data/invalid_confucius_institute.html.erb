@@ -1,0 +1,21 @@
+<h1>无效孔院信息列表<span></h1>
+<table class="list-generic">
+  <tr>
+    <th>中文名</th>
+    <th>外文名</th>
+    <th>无效孔院</th>
+    <th>操作</th>
+  </tr>
+  <% if @conventioners.blank? %>
+    <%= raw empty_record_tag %>
+  <% else %>
+    <% @conventioners.each_with_index do |conventioner, index| %>
+      <tr class="<%= odevity_tag index %>">
+        <td><%= link_to conventioner.chinese_name, conventioner %></td>
+        <td><%= link_to conventioner.foreign_name, conventioner %></td>
+        <td><%= conventioner.tmp_confucius_institute %></td>
+        <td><%= raw crud_for_list_tag(conventioner) %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>

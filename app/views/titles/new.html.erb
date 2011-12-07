@@ -1,0 +1,13 @@
+<h1>添加身份</h1>
+<%= form_for @title do |f| %>
+  <%= render "shared/error_messages", :target => @title %>
+  <fieldset class="form-generic">
+    <ul>
+      <li><label>名称：</label><%= f.text_field :name, :class => 'text-field' %></li>
+    </ul>
+    <div class="operation-generic">
+      <%= link_to '添加', '#', :onclick => "submitForm('new_title')", :class => 'button' %>
+      <%= link_to '身份列表', titles_path, :class => 'button' %>
+    </div>
+  </fieldset>
+<% end %>

@@ -1,0 +1,28 @@
+__filename = "all_confucius_institutes.xls"
+
+# we get 'xls' variable which is a Workbook object
+# then we can create some worksheet to work with, with create_worksheet method
+
+sheet1 = xls.create_worksheet
+
+# fill the [0, 0] cell
+
+sheet1[0, 0] = "All Confucius Institutes"
+
+# Worksheet#row will return a Row object. We can modify it just like an Array.
+# this code will return the second row and fill the cells.
+
+sheet1.row(1).concat ["Name"]
+
+# we can access the instance variable we set in the controller, just like
+# in erb template
+
+@confucius_institutes.each_with_index do |p, i|
+  sheet1.update_row i+2, p.name
+end
+
+title_format = Spreadsheet::Format.new(:color => :blue, :weight => :bold, :size => 18)
+sheet1.row(0).set_format(0, title_format)
+
+bold = Spreadsheet::Format.new(:weight => :bold)
+sheet1.row(1).default_format = bold

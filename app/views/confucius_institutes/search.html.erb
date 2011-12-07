@@ -1,0 +1,11 @@
+<h1>搜索孔院</h1>
+<%= form_tag search_confucius_institutes_path, :method => :get, :id => 'search_confucius_institute' do %>
+  <fieldset class="form-generic">
+    <ul>
+      <li><label>关键字：</label><%= text_field_tag :keyword, nil, :class => 'text-field' %></li>
+    </ul>
+  </fieldset>
+  <div class="operation-generic">
+    <%= link_to '搜索', '#', :onclick => "submitForm('search_confucius_institute')", :class => 'button' %>
+  </div>
+<% end %>

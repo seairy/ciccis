@@ -1,0 +1,26 @@
+<h1><%= @hotel.name %><%= @room.name %>入住代表名单</h1>
+<table class="list-generic">
+  <tr>
+    <th>代表姓名</th>
+    <th>国籍</th>
+    <th>签到时间</th>
+    <th>入住日期</th>
+    <th>离店日期</th>
+  </tr>
+  <% if @room.conventioners.blank? %>
+    <%= raw empty_record_tag %>
+  <% else %>
+    <% @room.conventioners.each_with_index do |conventioner, index| %>
+      <tr class="<%= odevity_tag index %>">
+        <td><%= link_to conventioner.chinese_name, conventioner %></td>
+        <td><%= conventioner.country.name %></td>
+        <td><%= human_register_for conventioner.registered_at %></td>
+        <td><%= human_date_for conventioner.occupied_at %></td>
+        <td><%= human_date_for conventioner.departed_at %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+<div class="operation-generic">
+  <%= link_to '返回酒店信息', @hotel, :class => 'button' %>
+</div>

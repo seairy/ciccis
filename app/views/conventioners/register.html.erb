@@ -1,0 +1,84 @@
+<h1>参会代表签到</h1>
+<fieldset class="form-generic">
+  <legend>基本信息</legend>
+  <ul>
+    <li><label>中文名：</label><%= @conventioner.chinese_name %></li>
+  </ul>
+  <ul>
+    <li><label>外文名：</label><%= @conventioner.foreign_name %></li>
+  </ul>
+  <ul>
+    <li><label>性别：</label><%= human_gender_for @conventioner.gender %></li>
+  </ul>
+  <ul>
+    <li><label>国籍：</label><%= @conventioner.country.name %></li>
+  </ul>
+  <ul>
+    <li><label>备注：</label><%= raw @conventioner.remark %></li>
+  </ul>
+</fieldset>
+<%= form_tag register_conventioner_path(@conventioner), :id => 'register_conventioner' do %>
+  <fieldset class="form-generic">
+    <legend>确认信息</legend>
+    <ul>
+      <li><label>领取会议材料：</label>
+        <% if @conventioner.stuff_required? %>
+          <%= radio_button :conventioner, :stuff_taken, 1, :checked => true %>领取 <%= radio_button :conventioner, :stuff_taken, 0 %>未领取
+        <% else %>
+          <span class="cred">不需要领取</span>
+        <% end %>
+      </li>
+    </ul>
+    <ul>
+      <li><label>领取《飞虎情缘》DVD：</label>
+        <% if @conventioner.dvd_required? %>
+          <%= radio_button :conventioner, :dvd_taken, 1, :checked => true %>领取 <%= radio_button :conventioner, :dvd_taken, 0 %>未领取</li>
+        <% else %>
+          <span class="cred">不需要领取</span>
+        <% end %>
+      </li>
+    </ul>
+    <ul>
+      <li><label>领取孔子学院资料汇编：</label>
+        <% if @conventioner.collection_required? %>
+          <%= radio_button :conventioner, :collection_taken, 1, :checked => true %>领取 <%= radio_button :conventioner, :collection_taken, 0 %>未领取</li>
+        <% else %>
+          <span class="cred">不需要领取</span>
+        <% end %>
+      </li>
+    </ul>
+    <ul>
+      <li><label>是否参加游览：</label><%= radio_button :conventioner, :tour_place, 1 %>中国国家博物馆 <%= radio_button :conventioner, :tour_place, 2 %>中国美术馆 <%= radio_button :conventioner, :tour_place, 0 %>不参加</li>
+    </ul>
+    <ul>
+      <li><label>是否参加开幕式：</label><%= radio_button :conventioner, :attend_opening, 1 %>参加 <%= radio_button :conventioner, :attend_opening, 0 %>不参加</li>
+    </ul>
+    <ul>
+      <li><label>是否参加晚宴：</label><%= radio_button :conventioner, :attend_banquet, 1 %>参加 <%= radio_button :conventioner, :attend_banquet, 0 %>不参加</li>
+    </ul>
+    <ul>
+      <li><label>是否参加说明会：</label><%= radio_button :conventioner, :attend_explanation, 1 %>参加 <%= radio_button :conventioner, :attend_explanation, 0 %>不参加</li>
+    </ul>
+    <ul>
+      <li><label>是否参加闭幕式：</label><%= radio_button :conventioner, :attend_closing, 1 %>参加 <%= radio_button :conventioner, :attend_closing, 0 %>不参加</li>
+    </ul>
+  </fieldset>
+  <fieldset class="form-generic">
+    <legend>住宿信息</legend>
+    <% if @conventioner.occupied? %>
+      <ul>
+        <li><label>入住酒店及房型：</label><%= human_hotel_and_room_for @conventioner %></li>
+      </ul>
+      <ul>
+        <li><label>房间号：</label><%= text_field :conventioner, :room_number, :class => 'text-field small' %></li>
+      </ul>
+    <% else %>
+      <ul>
+        <li><label>住宿状态：</label><span class="cred">不需要住宿</span></li>
+      </ul>
+    <% end %>
+  </fieldset>
+  <div class="operation-generic">
+    <%= link_to '填写完毕，确认签到', '#', :onclick => "submitForm('register_conventioner')", :class => 'button' %>
+  </div>
+<% end %>

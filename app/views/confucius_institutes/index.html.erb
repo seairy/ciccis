@@ -1,0 +1,24 @@
+<h1><%= @continent.name unless @continent.blank? %>孔院列表<span><%= raw ([link_to('全部', confucius_institutes_path)] << all_continents.collect{|c| link_to(c.name, confucius_institutes_path(:continent_id => c.id))}).join '|' %>|<%= link_to '添加孔院', new_confucius_institute_path %></span></h1>
+<table class="list-generic">
+  <tr>
+    <th>洲</th>
+    <th>国家</th>
+    <th>规模</th>
+    <th>名称</th>
+    <th>操作</th>
+  </tr>
+  <% if @confucius_institutes.blank? %>
+    <%= raw empty_record_tag %>
+  <% else %>
+    <% @confucius_institutes.each_with_index do |confucius_institute, index| %>
+      <tr class="<%= odevity_tag index %>">
+        <td><%= confucius_institute.country.continent.name %></td>
+        <td><%= confucius_institute.country.name %></td>
+        <td><%= human_scale_for confucius_institute.scale %></td>
+        <td><%= link_to confucius_institute.name, confucius_institute %></td>
+        <td><%= raw crud_for_list_tag(confucius_institute) %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+<%= will_paginate @confucius_institutes %>

@@ -1,0 +1,18 @@
+<h1>身份列表<span><%= link_to '添加身份', new_title_path %></span></h1>
+<table class="list-generic">
+  <tr>
+    <th>名称</th>
+    <th>操作</th>
+  </tr>
+  <% if @titles.blank? %>
+    <%= raw empty_record_tag %>
+  <% else %>
+    <% @titles.each_with_index do |title, index| %>
+      <tr class="<%= odevity_tag index %>">
+        <td><%= link_to title.name, title %></td>
+        <td><%= raw crud_for_list_tag(title, :discard_show => true, :discard_destroy => true) %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+<%= will_paginate @titles %>

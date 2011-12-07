@@ -1,0 +1,28 @@
+<h1>分析孔院资料汇编数据</h1>
+<% unless @valid_names.blank? %>
+  <fieldset class="form-generic">
+    <legend>有效代表信息(<%= @valid_names.size %>个)</legend>
+    <ul>
+      <li><label>代表姓名：</label><%= @valid_names.join ' / ' %>
+    </ul>
+  </fieldset>
+<% end %>
+<% unless @invalid_names.blank? %>
+  <fieldset class="form-generic">
+    <legend>无效代表信息(<%= @invalid_names.size %>个)</legend>
+    <ul>
+      <li><label>代表姓名：</label><%= @invalid_names.join ' / ' %>
+    </ul>
+  </fieldset>
+<% end %>
+<%= form_tag analyze_collection_required_data_path, :id => 'analyze_collection_required' do %>
+  <fieldset class="form-generic">
+    <legend>请输入用逗号分隔的代表姓名列表</legend>
+    <ul>
+      <li><label>代表姓名：</label><%= text_area_tag :names, nil, :class => 'text-area' %>
+    </ul>
+  </fieldset>
+  <div class="operation-generic">
+    <%= link_to '开始分析', '#', :onclick => "submitForm('analyze_collection_required')", :class => 'button' %>
+  </div>
+<% end %>

@@ -1,0 +1,11 @@
+<h1>酒店入住统计</h1>
+<% @hotels.each do |hotel| %>
+  <fieldset class="form-generic">
+    <legend><%= hotel.name %></legend>
+    <% hotel.rooms.each do |room| %>
+      <ul>
+        <li><label><%= room.name %>：</label>共<%= room.amount %>间，已预订<%= room.booked_amount %>间，已入住<%= room.occupied_amount %>间</li>
+      </ul>
+    <% end %>
+  </fieldset>
+<% end %>

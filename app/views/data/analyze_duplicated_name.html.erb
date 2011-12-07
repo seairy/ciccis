@@ -1,0 +1,21 @@
+<h1>分析重复姓名数据<span></h1>
+<table class="list-generic">
+  <tr>
+    <th>ID</th>
+    <th>中文名</th>
+    <th>外文名</th>
+    <th>住宿酒店</th>
+  </tr>
+  <% if @conventioners.blank? %>
+    <%= raw empty_record_tag %>
+  <% else %>
+    <% @conventioners.each_with_index do |conventioner, index| %>
+      <tr class="<%= odevity_tag index %>">
+        <td><%= link_to conventioner.id, conventioner %></td>
+        <td><%= link_to conventioner.chinese_name, conventioner %></td>
+        <td><%= link_to conventioner.foreign_name, conventioner %></td>
+        <td><%= human_hotel_and_room_for conventioner %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>

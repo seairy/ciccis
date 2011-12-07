@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>孔子学院大会报到系统</title>
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "application" %>
+</head>
+<body>
+  <div id="container">
+    <div id="header"><span>孔子学院大会报到系统</span></div>
+    <div id="content">
+      <%= flash_tag %>
+      <%= yield %>
+    </div>
+    <div id="side">
+      <% if signined? %>
+        <h3>数据统计</h3>
+        <ul>
+          <li><%= link_to '签到统计', register_statistics_path %></li>
+          <li><%= link_to '酒店入住统计', occupation_statistics_path %></li>
+        </ul>
+        <h3>参会代表管理</h3>
+        <ul>
+          <li><%= link_to '身份列表', titles_path %></li>
+          <li><%= link_to '添加身份', new_title_path %></li>
+          <li><%= link_to '搜索参会代表', search_conventioners_path %></li>
+          <li><%= link_to '参会代表列表', conventioners_path %></li>
+          <li><%= link_to '添加参会代表', new_conventioner_path %></li>
+        </ul>
+        <h3>孔院管理</h3>
+        <ul>
+          <li><%= link_to '搜索孔院', search_confucius_institutes_path %></li>
+          <li><%= link_to '孔院列表', confucius_institutes_path %></li>
+          <li><%= link_to '添加孔院', new_confucius_institute_path %></li>
+        </ul>
+        <h3>酒店及房型管理</h3>
+        <ul>
+          <li><%= link_to '酒店列表', hotels_path %></li>
+          <li><%= link_to '添加酒店', new_hotel_path %></li>
+        </ul>
+        <h3>用户管理</h3>
+        <ul>
+          <li><%= link_to '用户列表', users_path %></li>
+          <li><%= link_to '添加用户', new_user_path %></li>
+        </ul>
+        <h3>数据管理</h3>
+        <ul>
+          <li><%= link_to '分析未级联数据', analyze_uncascaded_data_path %></li>
+          <li><%= link_to '分析重复姓名数据', analyze_duplicated_name_data_path %></li>
+          <li><%= link_to '分析孔院资料汇编数据', analyze_collection_required_data_path %></li>
+        </ul>
+        <h3>系统管理</h3>
+        <ul>
+          <li><%= link_to '修改密码', edit_password_users_path %></li>
+          <li><%= link_to '注销', signout_path %></li>
+        </ul>
+      <% else %>
+        <h3>系统管理</h3>
+        <ul>
+          <li><%= link_to '用户登录', signin_path %></li>
+        </ul>
+      <% end %>
+    </div>
+    <div class="cb"></div>
+    <div id="footer">&copy; Copyright 2011 五洲汉风教育科技(北京)有限公司</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<h1>编辑参会代表</h1>
+<%= form_for @conventioner do |f| %>
+  <%= render "shared/error_messages", :target => @conventioner %>
+  <fieldset class="form-generic">
+    <ul>
+      <li><label>中文名：</label><%= f.text_field :chinese_name, :class => 'text-field' %></li>
+    </ul>
+    <ul>
+      <li><label>外文名：</label><%= f.text_field :foreign_name, :class => 'text-field' %></li>
+    </ul>
+    <ul>
+      <li><label>国籍：</label><%= f.select :country_id, option_groups_from_collection_for_select(all_continents, :countries, :name, :id, :name, :selected => @conventioner.country.id) %></li>
+    </ul>
+    <ul>
+      <li><label>所属孔院：</label><%= f.select :confucius_institute_id, option_groups_from_collection_for_select(all_continents, :confucius_institutes, :name, :id, :name, :selected => @conventioner.confucius_institute.blank? ? nil : @conventioner.confucius_institute.id), :prompt => '不属于任何孔院' %></li>
+    </ul>
+    <ul>
+      <li><label>入住酒店及房型：</label><%= f.select :room_id, option_groups_from_collection_for_select(all_hotels, :rooms, :name, :id, :name_with_details, :selected => (@conventioner.occupied? ? @conventioner.room.id : nil)), :prompt => '不需要住宿' %></li>
+    </ul>
+    <ul>
+      <li><label>工作单位：</label><%= f.text_field :work_unit, :class => 'text-field' %></li>
+    </ul>
+    <ul>
+      <li><label>所在机构任职：</label><%= f.text_field :position_in_wn, :class => 'text-field' %></li>
+    </ul>
+    <ul>
+      <li><label>孔院任职：</label><%= f.text_field :position_in_ci, :class => 'text-field' %></li>
+    </ul>
+    <ul>
+      <li><label>电子邮件：</label><%= f.text_field :email, :class => 'text-field' %></li>
+    </ul>
+    <ul>
+      <li><label>代表类型1：</label><%= f.radio_button :from, Conventioner::FROM_DOMESTIC %>国内代表 <%= f.radio_button :from, Conventioner::FROM_FOREIGN %>国外代表 <%= f.radio_button :from, Conventioner::FROM_CONSULATE %>使领馆代表</li>
+    </ul>
+    <ul>
+      <li><label>代表类型2：</label><%= f.radio_button :nonvoting, false %>普通代表 <%= f.radio_button :nonvoting, true %>列席代表</li>
+    </ul>
+    <ul>
+      <li><label>代表身份：</label><span class="no-warp-content"><%= raw human_identities_for @conventioner %></span></li><div class="cb"></div>
+    </ul>
+    <ul>
+      <li><label>抵京时间：</label><%= f.datetime_select :arrived_at, :use_month_numbers => true, :discard_minute => true %></li>
+    </ul>
+    <ul>
+      <li><label>航班号：</label><%= f.text_field :flight_number, :class => 'text-field small' %></li>
+    </ul>
+    <ul>
+      <li><label>离京时间：</label><%= f.datetime_select :returned_at, :use_month_numbers => true, :discard_minute => true %></li>
+    </ul>
+    <ul>
+      <li><label>领取会议材料：</label><%= f.radio_button :stuff_required, true %>需要 <%= f.radio_button :stuff_required, false %>不需要</li>
+    </ul>
+    <ul>
+      <li><label>领取《飞虎情缘》DVD：</label><%= f.radio_button :dvd_required, true %>需要 <%= f.radio_button :dvd_required, false %>不需要</li>
+    </ul>
+    <ul>
+      <li><label>领取孔子学院资料汇编：</label><%= f.radio_button :collection_required, true %>需要 <%= f.radio_button :collection_required, false %>不需要</li>
+    </ul>
+    <ul>
+      <li><label>计划参加游览：</label><%= f.radio_button :planed_tour_place, 1 %>中国国家博物馆 <%= f.radio_button :planed_tour_place, 2 %>中国美术馆 <%= f.radio_button :planed_tour_place, 0 %>不参加</li>
+    </ul>
+    <ul>
+      <li><label>项目官员：</label><%= f.text_field :person_in_charge, :class => 'text-field' %></li>
+    </ul>
+    <ul>
+      <li><label>备注：</label><%= f.text_area :remark, :class => 'text-area' %></li>
+    </ul>
+  </fieldset>
+  <div class="operation-generic">
+    <%= link_to '修改', '#', :onclick => "submitForm('edit_conventioner_#{@conventioner.id}')", :class => 'button' %>
+    <%= link_to '返回参会代表信息', @conventioner, :class => 'button' %>
+    <%= link_to '返回参会代表列表', conventioners_path, :class => 'button' %>
+  </div>
+<% end %>
