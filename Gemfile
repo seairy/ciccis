@@ -38,6 +38,6 @@ end
 
 gem 'will_paginate', '~> 3.0'
 gem 'RedCloth'
-gem 'ekuseru', :git => 'git://github.com/xinuc/ekuseru.git'
+gem 'ekuseru'
 gem 'execjs'
 gem 'therubyracer'
