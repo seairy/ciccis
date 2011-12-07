@@ -1,17 +1,42 @@
 <h1>分析孔院资料汇编数据</h1>
-<% unless @valid_names.blank? %>
+<% unless @valid_conventioners.blank? %>
   <fieldset class="form-generic">
-    <legend>有效代表信息(<%= @valid_names.size %>个)</legend>
+    <legend>有效代表信息(<%= @valid_conventioners.size %>个)</legend>
     <ul>
-      <li><label>代表姓名：</label><%= @valid_names.join ' / ' %>
+      <li>
+        <table class="list-generic">
+          <tr>
+            <th>中文名</th>
+            <th>外文名</th>
+            <th>国籍</th>
+            <th>住宿信息</th>
+            <th>签到时间</th>
+            <th>操作</th>
+          </tr>
+          <% if @valid_conventioners.blank? %>
+            <%= raw empty_record_tag %>
+          <% else %>
+            <% @valid_conventioners.each_with_index do |conventioner, index| %>
+              <tr class="<%= odevity_tag index %>">
+                <td><%= link_to conventioner.chinese_name, conventioner %></td>
+                <td><%= conventioner.foreign_name %></td>
+                <td><%= conventioner.country.name %></td>
+                <td><%= human_hotel_and_room_for conventioner %></td>
+                <td><%= human_register_for conventioner.registered_at %></td>
+                <td><%= raw crud_for_list_tag(conventioner) %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
+      </li>
     </ul>
   </fieldset>
 <% end %>
-<% unless @invalid_names.blank? %>
+<% unless @invalid_conventioner_names.blank? %>
   <fieldset class="form-generic">
-    <legend>无效代表信息(<%= @invalid_names.size %>个)</legend>
+    <legend>无效代表信息(<%= @invalid_conventioner_names.size %>个)</legend>
     <ul>
-      <li><label>代表姓名：</label><%= @invalid_names.join ' / ' %>
+      <li><label>代表姓名：</label><%= @invalid_conventioner_names.join ' / ' %>
     </ul>
   </fieldset>
 <% end %>
@@ -19,7 +44,7 @@
   <fieldset class="form-generic">
     <legend>请输入用逗号分隔的代表姓名列表</legend>
     <ul>
-      <li><label>代表姓名：</label><%= text_area_tag :names, nil, :class => 'text-area' %>
+      <li><label>代表姓名：</label><%= text_area_tag :names, nil, :class => 'text-area' %></li>
     </ul>
   </fieldset>
   <div class="operation-generic">

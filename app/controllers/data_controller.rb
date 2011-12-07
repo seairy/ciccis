@@ -134,11 +134,24 @@ class DataController < ApplicationController
   
   def analyze_collection_required
     unless params[:names].blank?
-      @valid_names = []
-      @invalid_names = []
+      @valid_conventioners = []
+      @invalid_conventioner_names = []
       params[:names].each_line do |names|
         chinese_and_foreign_name = names.split('，')
-        (Conventioner.where(:chinese_name => chinese_and_foreign_name[0].strip).first.blank? and Conventioner.where(:foreign_name => chinese_and_foreign_name[1].strip).first.blank?) ? (@invalid_names << names) : (@valid_names << names)
+        chinese_name, foreign_name = chinese_and_foreign_name[0].strip, chinese_and_foreign_name[1].strip
+        matched_conventioner = nil
+        if !chinese_name.blank?
+          matched_conventioner = Conventioner.where(:chinese_name => chinese_name).first
+          if matched_conventioner.blank? and !foreign_name.blank?
+            matched_conventioner = Conventioner.where(:foreign_name => foreign_name).first
+          end
+        elsif !foreign_name.blank?
+          matched_conventioner = Conventioner.where(:foreign_name => foreign_name).first
+          if matched_conventioner.blank? and !chinese_name.blank?
+            matched_conventioner = Conventioner.where(:chinese_name => chinese_name).first
+          end
+        end
+        matched_conventioner.blank? ? @invalid_conventioner_names << names : @valid_conventioners << matched_conventioner
       end
     end
   end
