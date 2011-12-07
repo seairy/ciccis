@@ -8,10 +8,43 @@
     <li><label>外文名：</label><%= @conventioner.foreign_name %></li>
   </ul>
   <ul>
-    <li><label>性别：</label><%= human_gender_for @conventioner.gender %></li>
+    <li><label>国籍：</label><%= @conventioner.country.name %></li>
   </ul>
   <ul>
-    <li><label>国籍：</label><%= @conventioner.country.name %></li>
+    <li><label>所属孔院：</label><%= human_confucius_institute_for @conventioner.confucius_institute %></li>
+  </ul>
+  <ul>
+    <li><label>工作单位：</label><%= @conventioner.work_unit %></li>
+  </ul>
+  <ul>
+    <li><label>所在机构任职：</label><%= @conventioner.position_in_wn %></li>
+  </ul>
+  <ul>
+    <li><label>孔院任职：</label><%= @conventioner.position_in_ci %></li>
+  </ul>
+  <ul>
+    <li><label>电子邮件：</label><%= @conventioner.email %></li>
+  </ul>
+  <ul>
+    <li><label>代表类型1：</label><%= human_from_for @conventioner.from %></li>
+  </ul>
+  <ul>
+    <li><label>代表类型2：</label><%= human_nonvoting_for @conventioner.nonvoting? %></li>
+  </ul>
+  <ul>
+    <li><label>代表身份：</label><%= @conventioner.titles.map{|t| t.name}.join '，' %></li>
+  </ul>
+  <ul>
+    <li><label>抵京时间：</label><%= human_datetime_for @conventioner.arrived_at %></li>
+  </ul>
+  <ul>
+    <li><label>航班号：</label><%= @conventioner.flight_number %></li>
+  </ul>
+  <ul>
+    <li><label>离京时间：</label><%= human_datetime_for @conventioner.returned_at %></li>
+  </ul>
+  <ul>
+    <li><label>项目官员：</label><%= @conventioner.person_in_charge %></li>
   </ul>
   <ul>
     <li><label>备注：</label><%= raw @conventioner.remark %></li>
