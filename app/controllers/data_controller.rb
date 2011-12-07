@@ -13,7 +13,9 @@ class DataController < ApplicationController
       unless c.tmp_country.nil?
         Country.where(:name => c.tmp_country).first.blank? ? @invalid_country_count += 1 : @valid_country_count += 1
       end
-      (!c.tmp_confucius_institute.blank? and ConfuciusInstitute.where(:name => c.tmp_confucius_institute).first.blank?) ? @invalid_ci_count += 1 : @valid_ci_count += 1
+      unless c.tmp_confucius_institute.blank?
+        (!c.tmp_confucius_institute.blank? and ConfuciusInstitute.where(:name => c.tmp_confucius_institute).first.blank?) ? @invalid_ci_count += 1 : @valid_ci_count += 1
+      end
       c.tmp_titles.split('，').each{|t| @titles << t unless t.blank?} unless c.tmp_titles.nil?
       if !c.tmp_hotel.nil? and !c.tmp_room.nil?
         unless c.tmp_hotel.blank?
@@ -54,6 +56,18 @@ class DataController < ApplicationController
           c.tmp_country = nil
           c.save
         end
+      end
+    end
+    redirect_to analyze_uncascaded_data_path, :notice => '操作完成'
+  end
+  
+  def cascade_confucius_institute
+    Conventioner.all.each do |c|
+      unless c.tmp_confucius_institute.blank?
+        confucius_institute = ConfuciusInstitute.where(:name => c.tmp_confucius_institute).first
+        c.confucius_institute_id = confucius_institute.id
+        c.tmp_confucius_institute = nil
+        c.save
       end
     end
     redirect_to analyze_uncascaded_data_path, :notice => '操作完成'
@@ -126,6 +140,13 @@ class DataController < ApplicationController
         chinese_and_foreign_name = names.split('，')
         (Conventioner.where(:chinese_name => chinese_and_foreign_name[0].strip).first.blank? and Conventioner.where(:foreign_name => chinese_and_foreign_name[1].strip).first.blank?) ? (@invalid_names << names) : (@valid_names << names)
       end
+    end
+  end
+  
+  def batch_update_uncascaded_confucius_institute
+    unless params[:origin_ci_name].blank?
+      Conventioner.where('tmp_confucius_institute LIKE ?', "%#{params[:origin_ci_name]}%").update_all(:tmp_confucius_institute => params[:new_ci_name])
+      flash[:notice] = '更新完成'
     end
   end
 end

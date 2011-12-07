@@ -3,8 +3,8 @@ class Conventioner < ActiveRecord::Base
   belongs_to :country
   belongs_to :confucius_institute
   belongs_to :room
-  has_many :operations
-  has_many :identities
+  has_many :operations, :dependent => :destroy
+  has_many :identities, :dependent => :destroy
   has_many :titles, :through => :identities, :source => :title
   scope :registered, where('registered_at IS NOT NULL')
   scope :unregistered, where('registered_at IS NULL')

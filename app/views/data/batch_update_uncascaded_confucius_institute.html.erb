@@ -1,0 +1,14 @@
+<h1>批量更新未级联孔院数据</h1>
+<%= form_tag batch_update_uncascaded_confucius_institute_data_path, :method => :get, :id => 'batch_update_uncascaded_confucius_institute' do %>
+  <fieldset class="form-generic">
+    <ul>
+      <li><label>原孔院：</label><%= text_field_tag :origin_ci_name, nil, :class => 'text-field' %>
+    </ul>
+    <ul>
+      <li><label>新孔院：</label><%= text_field_tag :new_ci_name, nil, :class => 'text-field' %>
+    </ul>
+  </fieldset>
+  <div class="operation-generic">
+    <%= link_to '批量更新', '#', :onclick => "submitForm('batch_update_uncascaded_confucius_institute')", :class => 'button' %>
+  </div>
+<% end %>

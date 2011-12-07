@@ -36,7 +36,7 @@ Ciccis::Application.routes.draw do
   end
   resources :data do
     collection do
-      get :analyze_uncascaded, :analyze_duplicated_name, :cascade_country, :cascade_confucius_institute, :cascade_title, :cascade_hotel, :invalid_country, :invalid_confucius_institute, :invalid_hotel, :analyze_collection_required
+      get :analyze_uncascaded, :analyze_duplicated_name, :cascade_country, :cascade_confucius_institute, :cascade_title, :cascade_hotel, :invalid_country, :invalid_confucius_institute, :invalid_hotel, :analyze_collection_required, :batch_update_uncascaded_confucius_institute
       post :analyze_collection_required
     end
   end
