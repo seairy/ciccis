@@ -138,6 +138,8 @@ class DataController < ApplicationController
       @invalid_conventioner_names = []
       params[:names].each_line do |names|
         chinese_and_foreign_name = names.split('，')
+        p "******** names:[#{names}]"
+        p "******** chinese_and_foreign_name:[#{chinese_and_foreign_name}]"
         chinese_name, foreign_name = chinese_and_foreign_name[0].strip, chinese_and_foreign_name[1].strip
         matched_conventioner = nil
         if !chinese_name.blank?

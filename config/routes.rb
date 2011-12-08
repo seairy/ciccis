@@ -31,7 +31,7 @@ Ciccis::Application.routes.draw do
   resources :titles
   resources :excels do
     collection do
-      get :all_confucius_institutes
+      get :all_confucius_institutes, :collection_required_conventioners
     end
   end
   resources :data do

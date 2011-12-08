@@ -6,5 +6,10 @@ class ExcelsController < ApplicationController
     @confucius_institutes = ConfuciusInstitute.all
     respond_with @confucius_institutes
   end
+  
+  def collection_required_conventioners
+    @conventioners = Conventioner.collection_required
+    respond_with @conventioners
+  end
 end
 

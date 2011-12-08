@@ -8,6 +8,7 @@ class Conventioner < ActiveRecord::Base
   has_many :titles, :through => :identities, :source => :title
   scope :registered, where('registered_at IS NOT NULL')
   scope :unregistered, where('registered_at IS NULL')
+  scope :collection_required, where(:collection_required => true).includes(:room).order('rooms.hotel_id ASC').includes(:country).order('countries.continent_id ASC').order(:country_id)
   
   def registered?
     !registered_at.blank?
@@ -25,7 +26,7 @@ class Conventioner < ActiveRecord::Base
     def search keyword
       conventioner_ids = Country.named(keyword).inject([]){|a, c| a << c.conventioners.collect{|co| co.id}}
       conventioner_ids << ConfuciusInstitute.named(keyword).inject([]){|a, c| a << c.conventioners.collect{|co| co.id}}
-      conventioner_ids << where('chinese_name LIKE ? OR foreign_name LIKE ?', "%#{keyword}%", "%#{keyword}%").all.collect{|c| c.id}
+      conventioner_ids << where('chinese_name LIKE ? OR foreign_name LIKE ? OR work_unit LIKE ?', "%#{keyword}%", "%#{keyword}%", "%#{keyword}%").all.collect{|c| c.id}
       where(id:conventioner_ids.flatten.compact.uniq)
     end
   end

@@ -1,0 +1,12 @@
+__filename = "collection_required_conventioners.xls"
+
+sheet1 = xls.create_worksheet
+
+sheet1.row(0).concat ["ID", "住宿酒店", "洲", "国家", "中文名", "英文名", "所属孔院", "工作单位", "所在机构任职", "孔院任职", "电子邮件", "代表类型1", "代表类型2", "代表身份", "项目官员"]
+
+@conventioners.each_with_index do |c, i|
+  sheet1.update_row i+1, c.id, human_hotel_for(c), c.country.continent.name, c.country.name, c.chinese_name, c.foreign_name, human_confucius_institute_for(c.confucius_institute), c.work_unit, c.position_in_wn, c.position_in_ci, c.email, human_from_for(c.from), human_nonvoting_for(c.nonvoting?), c.titles.map{|t| t.name}.join('，'), c.person_in_charge
+end
+
+bold = Spreadsheet::Format.new(:weight => :bold)
+sheet1.row(0).default_format = bold

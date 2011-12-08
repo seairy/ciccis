@@ -94,6 +94,10 @@ module ApplicationHelper
     confucius_institute.blank? ? '不属于任何孔院' : confucius_institute.name
   end
   
+  def human_hotel_for conventioner
+    conventioner.room.blank? ? '不需要住宿' : "#{conventioner.room.hotel.name}"
+  end
+  
   def human_hotel_and_room_for conventioner
     conventioner.room.blank? ? '不需要住宿' : "#{conventioner.room.hotel.name}，#{conventioner.room.name}"
   end
