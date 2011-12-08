@@ -1,4 +1,4 @@
-<h1><%= @hotel.name %><%= @room.name %>入住代表名单</h1>
+<h1>不住宿参会代表列表</h1>
 <table class="list-generic">
   <tr>
     <th>国籍</th>
@@ -9,7 +9,7 @@
   <% if @conventioners.blank? %>
     <%= raw empty_record_tag %>
   <% else %>
-    <% @conventioners.ordered.each_with_index do |conventioner, index| %>
+    <% @conventioners.each_with_index do |conventioner, index| %>
       <tr class="<%= odevity_tag index %>">
         <td><%= conventioner.country.name %></td>
         <td><%= link_to conventioner.chinese_name, conventioner %></td>
@@ -19,6 +19,4 @@
     <% end %>
   <% end %>
 </table>
-<div class="operation-generic">
-  <%= link_to '返回酒店信息', @hotel, :class => 'button' %>
-</div>
+<%= will_paginate @conventioners %>

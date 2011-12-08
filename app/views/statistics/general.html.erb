@@ -1,0 +1,13 @@
+<h1>综合统计</h1>
+<fieldset class="form-generic">
+  <legend>签到统计</legend>
+  <ul>
+    <li><label>参会代表总人数：</label><%= link_to @total_conventioners_count, conventioners_path, :target => '_blank' %></li>
+  </ul>
+  <ul>
+    <li><label>已签到参会代表人数：</label><%= link_to @registered_conventioners_count, registered_conventioners_path, :target => '_blank' %></li>
+  </ul>
+  <ul>
+    <li><label>未签到参会代表人数：</label><%= link_to @unregistered_conventioners_count, unregistered_conventioners_path, :target => '_blank' %></li>
+  </ul>
+</fieldset>

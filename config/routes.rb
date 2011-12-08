@@ -2,12 +2,12 @@ Ciccis::Application.routes.draw do
   root :to => 'home#index'
   resources :statistics do
     collection do
-      get :register, :occupation
+      get :general, :occupation, :title, :collection
     end
   end
   resources :conventioners do
     collection do
-      get :search
+      get :search, :registered, :unregistered, :unoccupied, :collection_required
     end
     member do
       get :register
@@ -15,6 +15,9 @@ Ciccis::Application.routes.draw do
     end
   end
   resources :hotels do
+    member do
+      get :collection_required_conventioners
+    end
     resources :rooms
   end
   resources :confucius_institutes do
@@ -31,7 +34,7 @@ Ciccis::Application.routes.draw do
   resources :titles
   resources :excels do
     collection do
-      get :all_confucius_institutes, :collection_required_conventioners
+      get :all_confucius_institutes, :collection_required_conventioners, :all_conventioners
     end
   end
   resources :data do

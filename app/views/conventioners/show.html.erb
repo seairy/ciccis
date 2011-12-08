@@ -68,6 +68,48 @@
     <ul>
       <li><label>操作人：</label><%= @conventioner.registered_by %></li>
     </ul>
+    <ul>
+      <li><label>领取会议材料：</label>
+        <% if @conventioner.stuff_required? %>
+          <%= human_taken_for @conventioner.stuff_taken %>
+        <% else %>
+          <span class="cred">不需要领取</span>
+        <% end %>
+      </li>
+    </ul>
+    <ul>
+      <li><label>领取《飞虎情缘》DVD：</label>
+        <% if @conventioner.dvd_required? %>
+          <%= human_taken_for @conventioner.dvd_taken %>
+        <% else %>
+          <span class="cred">不需要领取</span>
+        <% end %>
+      </li>
+    </ul>
+    <ul>
+      <li><label>领取孔子学院资料汇编：</label>
+        <% if @conventioner.collection_required? %>
+          <%= human_taken_for @conventioner.collection_taken %>
+        <% else %>
+          <span class="cred">不需要领取</span>
+        <% end %>
+      </li>
+    </ul>
+    <ul>
+      <li><label>是否参加游览：</label><%= human_tour_for @conventioner.tour_place %></li>
+    </ul>
+    <ul>
+      <li><label>是否参加开幕式：</label><%= human_boolean_for @conventioner.attend_opening? %></li>
+    </ul>
+    <ul>
+      <li><label>是否参加晚宴：</label><%= human_boolean_for @conventioner.attend_banquet? %></li>
+    </ul>
+    <ul>
+      <li><label>是否参加说明会：</label><%= human_boolean_for @conventioner.attend_explanation? %></li>
+    </ul>
+    <ul>
+      <li><label>是否参加闭幕式：</label><%= human_boolean_for @conventioner.attend_closing? %></li>
+    </ul>
   <% else %>
     <ul>
       <li><label>签到状态：</label><span class="cred">未签到</span></li>

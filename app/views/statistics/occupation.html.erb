@@ -4,8 +4,14 @@
     <legend><%= hotel.name %></legend>
     <% hotel.rooms.each do |room| %>
       <ul>
-        <li><label><%= room.name %>：</label>共<%= room.amount %>间，已预订<%= room.booked_amount %>间，已入住<%= room.occupied_amount %>间</li>
+        <li><label><%= room.name %>：</label>共<%= room.amount %>间，已预订<%= link_to room.booked_amount, [hotel, room], :target => '_blank' %>人，已签到<%= link_to room.conventioners.registered.size, hotel_room_path(hotel, room, :registered => true), :target => '_blank' %>人，未签到<%= link_to room.conventioners.unregistered.size, hotel_room_path(hotel, room, :unregistered => true), :target => '_blank' %>人</li>
       </ul>
     <% end %>
   </fieldset>
 <% end %>
+<fieldset class="form-generic">
+  <legend>不安排住宿</legend>
+  <ul>
+    <li><label>代表信息：</label>共<%= link_to @unoccupied_conventioners.size, unoccupied_conventioners_path, :target => '_blank' %>人</li>
+  </ul>
+</fieldset>

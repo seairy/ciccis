@@ -16,8 +16,10 @@
       <% if signined? %>
         <h3>数据统计</h3>
         <ul>
-          <li><%= link_to '签到统计', register_statistics_path %></li>
+          <li><%= link_to '综合统计', general_statistics_path %></li>
           <li><%= link_to '酒店入住统计', occupation_statistics_path %></li>
+          <li><%= link_to '身份统计', title_statistics_path %></li>
+          <li><%= link_to '资料汇编统计', collection_statistics_path %></li>
         </ul>
         <h3>参会代表管理</h3>
         <ul>
@@ -49,6 +51,7 @@
           <li><%= link_to '分析重复姓名数据', analyze_duplicated_name_data_path %></li>
           <li><%= link_to '分析孔院资料汇编数据', analyze_collection_required_data_path %></li>
           <li><%= link_to '批量更新未级联孔院数据', batch_update_uncascaded_confucius_institute_data_path %></li>
+          <li><%= link_to '所有参会代表导出Excel', all_conventioners_excels_path(:format => :xls) %></li>
           <li><%= link_to '领取资料汇编代表导出Excel', collection_required_conventioners_excels_path(:format => :xls) %></li>
         </ul>
         <h3>系统管理</h3>

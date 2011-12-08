@@ -1,0 +1,21 @@
+__filename = "all_conventioners.xls"
+
+bold = Spreadsheet::Format.new(:weight => :bold)
+
+@hotels.each do |hotel|
+  sheet = xls.create_worksheet
+  sheet.name = hotel.name
+  sheet.row(0).concat ["ID", "房型", "房间号", "洲", "国家", "中文名", "英文名", "所属孔院", "工作单位", "所在机构任职", "孔院任职", "电子邮件", "代表类型1", "代表类型2", "代表身份", "抵京时间", "航班号", "离京时间", "领取会议材料", "领取《飞虎情缘》DVD", "领取孔子学院资料汇编", "签到时间", "项目官员", "备注"]
+  hotel.conventioners.ordered.each_with_index do |c, i|
+    sheet.update_row i+1, c.id, c.room.name, c.room_number, c.country.continent.name, c.country.name, c.chinese_name, c.foreign_name, human_confucius_institute_for(c.confucius_institute), c.work_unit, c.position_in_wn, c.position_in_ci, c.email, human_from_for(c.from), human_nonvoting_for(c.nonvoting?), c.titles.map{|t| t.name}.join('，'), human_datetime_for(c.arrived_at), c.flight_number, human_datetime_for(c.returned_at), human_required_for(c.stuff_required?), human_required_for(c.dvd_required?), human_required_for(c.collection_required?), human_plain_register_for(c.registered_at), c.person_in_charge, c.remark
+  end
+  sheet.row(0).default_format = bold
+end
+
+unoccupied_sheet = xls.create_worksheet
+unoccupied_sheet.name = '不住宿代表'
+unoccupied_sheet.row(0).concat ["ID", "洲", "国家", "中文名", "英文名", "所属孔院", "工作单位", "所在机构任职", "孔院任职", "电子邮件", "代表类型1", "代表类型2", "代表身份", "抵京时间", "航班号", "离京时间", "领取会议材料", "领取《飞虎情缘》DVD", "领取孔子学院资料汇编", "签到时间", "项目官员", "备注"]
+@unoccupied_conventioners.ordered.each_with_index do |c, i|
+  unoccupied_sheet.update_row i+1, c.id, c.country.continent.name, c.country.name, c.chinese_name, c.foreign_name, human_confucius_institute_for(c.confucius_institute), c.work_unit, c.position_in_wn, c.position_in_ci, c.email, human_from_for(c.from), human_nonvoting_for(c.nonvoting?), c.titles.map{|t| t.name}.join('，'), human_datetime_for(c.arrived_at), c.flight_number, human_datetime_for(c.returned_at), human_required_for(c.stuff_required?), human_required_for(c.dvd_required?), human_required_for(c.collection_required?), human_plain_register_for(c.registered_at), c.person_in_charge, c.remark
+end
+unoccupied_sheet.row(0).default_format = bold

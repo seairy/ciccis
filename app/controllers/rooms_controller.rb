@@ -8,6 +8,13 @@ class RoomsController < ApplicationController
   
   def show
     @room = Room.find(params[:id])
+    if !params[:registered].blank?
+      @conventioners = @room.conventioners.registered
+    elsif !params[:unregistered].blank?
+      @conventioners = @room.conventioners.unregistered
+    else
+      @conventioners = @room.conventioners
+    end
   end
   
   def new

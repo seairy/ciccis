@@ -2,6 +2,11 @@
 class ExcelsController < ApplicationController
   respond_to :xls
   
+  def all_conventioners
+    @hotels = Hotel.all
+    @unoccupied_conventioners = Conventioner.unoccupied
+  end
+  
   def all_confucius_institutes
     @confucius_institutes = ConfuciusInstitute.all
     respond_with @confucius_institutes

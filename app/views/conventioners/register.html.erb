@@ -65,7 +65,7 @@
     <ul>
       <li><label>领取《飞虎情缘》DVD：</label>
         <% if @conventioner.dvd_required? %>
-          <%= radio_button :conventioner, :dvd_taken, 1, :checked => true %>领取 <%= radio_button :conventioner, :dvd_taken, 0 %>未领取</li>
+          <%= radio_button :conventioner, :dvd_taken, 1, :checked => true %>领取 <%= radio_button :conventioner, :dvd_taken, 0 %>未领取
         <% else %>
           <span class="cred">不需要领取</span>
         <% end %>
@@ -74,7 +74,7 @@
     <ul>
       <li><label>领取孔子学院资料汇编：</label>
         <% if @conventioner.collection_required? %>
-          <%= radio_button :conventioner, :collection_taken, 1, :checked => true %>领取 <%= radio_button :conventioner, :collection_taken, 0 %>未领取</li>
+          <%= radio_button :conventioner, :collection_taken, 1, :checked => true %>领取 <%= radio_button :conventioner, :collection_taken, 0 %>未领取
         <% else %>
           <span class="cred">不需要领取</span>
         <% end %>

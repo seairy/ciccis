@@ -1,9 +1,10 @@
-<h1><%= @hotel.name %><%= @room.name %>入住代表名单</h1>
+<h1><%= @title.name %>代表名单</h1>
 <table class="list-generic">
   <tr>
     <th>国籍</th>
     <th>中文名</th>
     <th>外文名</th>
+    <th>住宿信息</th>
     <th>签到时间</th>
   </tr>
   <% if @conventioners.blank? %>
@@ -14,11 +15,12 @@
         <td><%= conventioner.country.name %></td>
         <td><%= link_to conventioner.chinese_name, conventioner %></td>
         <td><%= link_to conventioner.foreign_name, conventioner %></td>
+        <td><%= human_hotel_and_room_for conventioner %></td>
         <td><%= human_register_for conventioner.registered_at %></td>
       </tr>
     <% end %>
   <% end %>
 </table>
 <div class="operation-generic">
-  <%= link_to '返回酒店信息', @hotel, :class => 'button' %>
+  <%= link_to '返回身份列表', titles_path, :class => 'button' %>
 </div>

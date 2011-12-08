@@ -2,7 +2,33 @@
 class ConventionersController < ApplicationController
   
   def index
-    @conventioners = Conventioner.paginate :page => params[:page]
+    @conventioners = Conventioner.ordered.paginate :page => params[:page]
+  end
+  
+  def registered
+    @conventioners = Conventioner.registered.ordered.paginate :page => params[:page]
+  end
+  
+  def unregistered
+    @conventioners = Conventioner.unregistered.ordered.paginate :page => params[:page]
+  end
+  
+  def collection_required
+    if !params[:registered].blank?
+      @conventioners = Conventioner.collection_required.registered.ordered.paginate :page => params[:page]
+    elsif !params[:unregistered].blank?
+      @conventioners = Conventioner.collection_required.unregistered.ordered.paginate :page => params[:page]
+    elsif !params[:taken].blank?
+      @conventioners = Conventioner.collection_required.collection_taken.ordered.paginate :page => params[:page]
+    elsif !params[:untaken].blank?
+      @conventioners = Conventioner.collection_required.collection_untaken.ordered.paginate :page => params[:page]
+    else
+      @conventioners = Conventioner.collection_required.ordered.paginate :page => params[:page]
+    end
+  end
+  
+  def unoccupied
+    @conventioners = Conventioner.unoccupied.ordered.paginate :page => params[:page]
   end
   
   def show
@@ -58,6 +84,7 @@ class ConventionersController < ApplicationController
       if @conventioner.registered?
         flash[:alert] = '该参会代表已经进行签到了'
       else
+        @conventioner.update_attributes(params[:conventioner])
         @conventioner.update_attribute :registered_at, Time.now
         Operation.create({ :user_id => user_id_in_session, :conventioner_id => @conventioner.id, :action => Operation::ACTION_REGISTER })
         flash[:notice] = '签到成功'

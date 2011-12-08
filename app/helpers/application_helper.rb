@@ -70,6 +70,10 @@ module ApplicationHelper
     required ? '需要' : '不需要'
   end
   
+  def human_taken_for required
+    required ? '已领取' : '未领取'
+  end
+  
   def human_date_for date
     date.strftime '%Y-%m-%d' unless date.blank?
   end
@@ -80,6 +84,14 @@ module ApplicationHelper
   
   def human_text_for text
     RedCloth.new(text).to_html unless text.blank?
+  end
+  
+  def human_tour_for tour_place
+    case tour_place
+    when 0 then '不参加'
+    when 1 then '中国国家博物馆'
+    when 2 then '中国美术馆'
+    end
   end
   
   def human_from_for from
@@ -104,6 +116,10 @@ module ApplicationHelper
   
   def human_register_for registered_at
     raw registered_at.blank? ? '<span class="cred">未签到</span>' : human_datetime_for(registered_at)
+  end
+  
+  def human_plain_register_for registered_at
+    raw registered_at.blank? ? '未签到' : human_datetime_for(registered_at)
   end
   
   def human_scale_for scale

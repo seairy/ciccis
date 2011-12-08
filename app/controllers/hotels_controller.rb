@@ -9,6 +9,17 @@ class HotelsController < ApplicationController
     @hotel = Hotel.find(params[:id])
   end
   
+  def collection_required_conventioners
+    @hotel = Hotel.find(params[:id])
+    if !params[:taken].blank?
+      @conventioners = @hotel.conventioners.collection_required.collection_taken
+    elsif !params[:untaken].blank?
+      @conventioners = @hotel.conventioners.collection_required.collection_untaken
+    else
+      @conventioners = @hotel.conventioners.collection_required
+    end
+  end
+  
   def new
     @hotel = Hotel.new
   end

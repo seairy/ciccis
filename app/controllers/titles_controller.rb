@@ -7,6 +7,13 @@ class TitlesController < ApplicationController
   
   def show
     @title = Title.find(params[:id])
+    if !params[:registered].blank?
+      @conventioners = @title.conventioners.registered
+    elsif !params[:unregistered].blank?
+      @conventioners = @title.conventioners.unregistered
+    else
+      @conventioners = @title.conventioners
+    end
   end
   
   def new
