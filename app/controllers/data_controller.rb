@@ -137,23 +137,14 @@ class DataController < ApplicationController
       @valid_conventioners = []
       @invalid_conventioner_names = []
       params[:names].each_line do |names|
-        chinese_and_foreign_name = names.split('，')
-        p "******** names:[#{names}]"
-        p "******** chinese_and_foreign_name:[#{chinese_and_foreign_name}]"
-        chinese_name, foreign_name = chinese_and_foreign_name[0].strip, chinese_and_foreign_name[1].strip
-        matched_conventioner = nil
-        if !chinese_name.blank?
-          matched_conventioner = Conventioner.where(:chinese_name => chinese_name).first
-          if matched_conventioner.blank? and !foreign_name.blank?
-            matched_conventioner = Conventioner.where(:foreign_name => foreign_name).first
-          end
-        elsif !foreign_name.blank?
-          matched_conventioner = Conventioner.where(:foreign_name => foreign_name).first
-          if matched_conventioner.blank? and !chinese_name.blank?
-            matched_conventioner = Conventioner.where(:chinese_name => chinese_name).first
-          end
+        matched_conventioner = check_names(names)
+        unless matched_conventioner.blank?
+          @valid_conventioners << matched_conventioner
+          matched_conventioner.collection_required = true
+          matched_conventioner.save
+        else
+          @invalid_conventioner_names << names
         end
-        matched_conventioner.blank? ? @invalid_conventioner_names << names : @valid_conventioners << matched_conventioner
       end
     end
   end
@@ -163,6 +154,25 @@ class DataController < ApplicationController
       Conventioner.where('tmp_confucius_institute LIKE ?', "%#{params[:origin_ci_name]}%").update_all(:tmp_confucius_institute => params[:new_ci_name])
       flash[:notice] = '更新完成'
     end
+  end
+  
+  protected
+  def check_names names
+    chinese_and_foreign_name = names.split('，')
+    chinese_name, foreign_name = chinese_and_foreign_name[0].strip, chinese_and_foreign_name[1].strip
+    matched_conventioner = nil
+    if !chinese_name.blank?
+      matched_conventioner = Conventioner.where(:chinese_name => chinese_name).first
+      if matched_conventioner.blank? and !foreign_name.blank?
+        matched_conventioner = Conventioner.where(:foreign_name => foreign_name).first
+      end
+    elsif !foreign_name.blank?
+      matched_conventioner = Conventioner.where(:foreign_name => foreign_name).first
+      if matched_conventioner.blank? and !chinese_name.blank?
+        matched_conventioner = Conventioner.where(:chinese_name => chinese_name).first
+      end
+    end
+    matched_conventioner
   end
 end
 
