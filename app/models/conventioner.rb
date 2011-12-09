@@ -7,6 +7,11 @@ class Conventioner < ActiveRecord::Base
   has_many :identities, :dependent => :destroy
   has_many :titles, :through => :identities, :source => :title
   scope :ordered, order(:country_id).order(:foreign_name).order(:chinese_name)
+  scope :domestic, where(:from => FROM_DOMESTIC)
+  scope :foreign, where(:from => FROM_FOREIGN)
+  scope :consulate, where(:from => FROM_CONSULATE)
+  scope :voting, where(:nonvoting => false)
+  scope :nonvoting, where(:nonvoting => true)
   scope :registered, where('registered_at IS NOT NULL')
   scope :unregistered, where('registered_at IS NULL')
   scope :unoccupied, where('room_id IS NULL')
@@ -24,6 +29,18 @@ class Conventioner < ActiveRecord::Base
   
   def occupied?
     !room.blank?
+  end
+  
+  def human_name
+    if chinese_name.blank?
+      foreign_name
+    else
+      if foreign_name.blank?
+        chinese_name
+      else
+        "#{chinese_name}(#{foreign_name})"
+      end
+    end
   end
   
   class << self

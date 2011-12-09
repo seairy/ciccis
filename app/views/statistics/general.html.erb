@@ -11,3 +11,12 @@
     <li><label>未签到参会代表人数：</label><%= link_to @unregistered_conventioners_count, unregistered_conventioners_path, :target => '_blank' %></li>
   </ul>
 </fieldset>
+<fieldset class="form-generic">
+  <legend>代表类型统计</legend>
+  <ul>
+    <li><label>代表类型1：</label>国内代表<%= link_to @domestic_conventioners_count, conventioners_path, :target => '_blank' %>人，国外代表<%= link_to @foreign_conventioners_count, conventioners_path, :target => '_blank' %>人，使领馆代表<%= link_to @consulate_conventioners_count, conventioners_path, :target => '_blank' %>人</li>
+  </ul>
+  <ul>
+    <li><label>代表类型2：</label>普通代表<%= link_to @voting_conventioners_count, conventioners_path, :target => '_blank' %>人，列席代表<%= link_to @nonvoting_conventioners_count, conventioners_path, :target => '_blank' %>人</li>
+  </ul>
+</fieldset>

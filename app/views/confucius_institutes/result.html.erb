@@ -5,7 +5,7 @@
     <th>国家</th>
     <th>规模</th>
     <th>名称</th>
-    <th>操作</th>
+    <th>参会代表信息</th>
   </tr>
   <% if @confucius_institutes.blank? %>
     <%= raw empty_record_tag %>
@@ -16,7 +16,7 @@
         <td><%= confucius_institute.country.name %></td>
         <td><%= human_scale_for confucius_institute.scale %></td>
         <td><%= link_to confucius_institute.name, confucius_institute %></td>
-        <td><%= raw crud_for_list_tag(confucius_institute) %></td>
+        <td>共<%= confucius_institute.conventioners.size %>人</td>
       </tr>
     <% end %>
   <% end %>

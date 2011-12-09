@@ -1,9 +1,28 @@
-<h1>查看雇员</h1>
+<h1>查看孔院</h1>
 <fieldset class="form-generic">
+  <legend>孔院信息</legend>
+  <ul>
+    <li><label>洲：</label><%= @confucius_institute.country.continent.name %></li>
+  </ul>
+  <ul>
+    <li><label>国家：</label><%= @confucius_institute.country.name %></li>
+  </ul>
+  <ul>
+    <li><label>规模：</label><%= human_scale_for @confucius_institute.scale %></li>
+  </ul>
   <ul>
     <li><label>名称：</label><%= @confucius_institute.name %></li>
   </ul>
-  <div class="operation-generic">
-    <%= raw crud_for_show_tag(@confucius_institute) %>
-  </div>
 </fieldset>
+<fieldset class="form-generic">
+  <legend>参会代表信息</legend>
+  <% @confucius_institute.conventioners.each do |conventioner| %>
+    <ul>
+      <li><label><%= link_to conventioner.human_name, conventioner, :target => '_blank' %>：</label><%= human_hotel_and_room_for conventioner %></li>
+    </ul>
+  <% end %>
+</fieldset>
+<div class="operation-generic">
+  <% permissable_for [User::ROLE_EMPLOYEE] do %><%= link_to '编辑', edit_confucius_institute_path(@confucius_institute), :class => 'button' %><% end %>
+  <%= link_to '返回孔院列表', confucius_institutes_path, :class => 'button' %>
+</div>

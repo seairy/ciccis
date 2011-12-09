@@ -5,6 +5,11 @@ class StatisticsController < ApplicationController
     @total_conventioners_count = Conventioner.all.size
     @registered_conventioners_count = Conventioner.registered.size
     @unregistered_conventioners_count = Conventioner.unregistered.size
+    @domestic_conventioners_count = Conventioner.domestic.size
+    @foreign_conventioners_count = Conventioner.foreign.size
+    @consulate_conventioners_count = Conventioner.consulate.size
+    @voting_conventioners_count = Conventioner.voting.size
+    @nonvoting_conventioners_count = Conventioner.nonvoting.size
   end
   
   def occupation

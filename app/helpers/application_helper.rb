@@ -49,6 +49,11 @@ module ApplicationHelper
     end
   end
   
+  def permissable_for roles = []
+    raise ArgumentError, 'Missing block' unless block_given?
+    raw yield if roles.include?(user_role_in_session) or user_role_in_session == User::ROLE_ADMIN
+  end
+  
   def options_for_scale
     [['孔子学院', ConfuciusInstitute::SCALE_INSTITUTE], ['孔子课堂', ConfuciusInstitute::SCALE_CLASSROOM]]
   end
