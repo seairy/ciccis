@@ -99,6 +99,14 @@ module ApplicationHelper
     end
   end
   
+  def human_collection_for conventioner
+    if conventioner.collection_required?
+      "#{conventioner.collection_number}号"
+    else
+      '不需要'
+    end
+  end
+  
   def human_from_for from
     case from
     when Conventioner::FROM_DOMESTIC then '国内代表'

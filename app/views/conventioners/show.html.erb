@@ -89,7 +89,7 @@
     <ul>
       <li><label>领取孔子学院资料汇编：</label>
         <% if @conventioner.collection_required? %>
-          <%= human_taken_for @conventioner.collection_taken %>
+          编号：<%= @conventioner.collection_number %>，<%= human_taken_for @conventioner.collection_taken %>
         <% else %>
           <span class="cred">不需要领取</span>
         <% end %>
