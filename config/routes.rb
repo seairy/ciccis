@@ -1,5 +1,5 @@
 Ciccis::Application.routes.draw do
-  root :to => 'home#index'
+  root :to => 'statistics#general'
   resources :statistics do
     collection do
       get :general, :occupation, :title, :collection
