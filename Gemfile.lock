@@ -1,11 +1,3 @@
-GIT
-  remote: git://github.com/xinuc/ekuseru.git
-  revision: a3cba0a5264496f75c9ef03007975913456e6a19
-  specs:
-    ekuseru (0.3.10)
-      rails (>= 3.0)
-      spreadsheet (>= 0.6)
-
 GEM
   remote: http://rubygems.org/
   remote: http://gems.github.com/
@@ -49,6 +41,9 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.1.2)
+    ekuseru (0.3.10)
+      rails (>= 3.0)
+      spreadsheet (>= 0.6)
     erubis (2.7.0)
     execjs (1.2.9)
       multi_json (~> 1.0)
@@ -129,7 +124,7 @@ PLATFORMS
 DEPENDENCIES
   RedCloth
   coffee-rails (~> 3.1.1)
-  ekuseru!
+  ekuseru
   execjs
   jquery-rails
   mysql2
