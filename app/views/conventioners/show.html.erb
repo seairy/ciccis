@@ -50,7 +50,7 @@
     <li><label>领取《飞虎情缘》DVD：</label><%= human_required_for @conventioner.dvd_required? %></li>
   </ul>
   <ul>
-    <li><label>领取孔子学院资料汇编：</label>编号：<%= @conventioner.collection_number %>，<%= human_required_for @conventioner.collection_required? %></li>
+    <li><label>领取孔子学院资料汇编：</label><%= human_required_for @conventioner.collection_required? %>，编号<%= @conventioner.collection_number %></li>
   </ul>
   <ul>
     <li><label>项目官员：</label><%= @conventioner.person_in_charge %></li>
@@ -89,7 +89,7 @@
     <ul>
       <li><label>领取孔子学院资料汇编：</label>
         <% if @conventioner.collection_required? %>
-          编号：<%= @conventioner.collection_number %>，<%= human_taken_for @conventioner.collection_taken %>
+          <%= human_taken_for @conventioner.collection_taken %>，编号<%= @conventioner.collection_number %>
         <% else %>
           <span class="cred">不需要领取</span>
         <% end %>
