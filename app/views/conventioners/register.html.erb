@@ -74,7 +74,7 @@
     <ul>
       <li><label>领取孔子学院资料汇编：</label>
         <% if @conventioner.collection_required? %>
-          编号：<%= @conventioner.collection_number %>，<%= radio_button :conventioner, :collection_taken, 1, :checked => true %>领取 <%= radio_button :conventioner, :collection_taken, 0 %>未领取
+          编号：<%= @conventioner.collection_number %> <%= radio_button :conventioner, :collection_taken, 1, :checked => true %>领取 <%= radio_button :conventioner, :collection_taken, 0 %>未领取
         <% else %>
           <span class="cred">不需要领取</span>
         <% end %>
