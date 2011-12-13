@@ -1,4 +1,4 @@
-__filename = "all_conventioners.xls"
+__filename = "attend_closing_conventioners.xls"
 
 bold = Spreadsheet::Format.new(:weight => :bold)
 sheet = xls.create_worksheet
