@@ -12,10 +12,10 @@ class StatisticsController < ApplicationController
     @nonvoting_conventioners_count = Conventioner.nonvoting.size
     @attend_banquet_conventioners_count = Conventioner.attend_banquet.size
     @unattend_banquet_conventioners_count = Conventioner.unattend_banquet.size
-    @unsure_attend_banquet_conventioners_count =
+    @unsure_attend_banquet_conventioners_count = Conventioner.unsure_attend_banquet.size
     @attend_closing_conventioners_count = Conventioner.attend_closing.size
     @unattend_closing_conventioners_count = Conventioner.unattend_closing.size
-    @unsure_attend_closing_conventioners_count =
+    @unsure_attend_closing_conventioners_count = Conventioner.unsure_attend_closing.size
   end
   
   def occupation
