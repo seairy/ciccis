@@ -55,6 +55,7 @@
           <% permissable_for [User::ROLE_ADMIN] do %><li><%= link_to '批量更新未级联孔院数据', batch_update_uncascaded_confucius_institute_data_path %></li><% end %>
           <li><%= link_to '所有参会代表导出Excel', all_conventioners_excels_path(:format => :xls) %></li>
           <li><%= link_to '领取资料汇编代表导出Excel', collection_required_conventioners_excels_path(:format => :xls) %></li>
+          <li><%= link_to '参加闭幕式代表导出Excel', attend_closing_conventioners_excels_path(:format => :xls) %></li>
         </ul>
         <h3>系统管理</h3>
         <ul>

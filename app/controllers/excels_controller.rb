@@ -16,5 +16,10 @@ class ExcelsController < ApplicationController
     @conventioners = Conventioner.collection_required
     respond_with @conventioners
   end
+  
+  def attend_closing_conventioners
+    @conventioners = Conventioner.attend_closing
+    respond_with @conventioners
+  end
 end
 
