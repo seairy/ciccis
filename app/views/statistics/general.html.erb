@@ -20,3 +20,12 @@
     <li><label>代表类型2：</label>普通代表<%= link_to @voting_conventioners_count, conventioners_path, :target => '_blank' %>人，列席代表<%= link_to @nonvoting_conventioners_count, conventioners_path, :target => '_blank' %>人</li>
   </ul>
 </fieldset>
+<fieldset class="form-generic">
+  <legend>出席活动统计</legend>
+  <ul>
+    <li><label>晚宴：</label>参加<%= @attend_banquet_conventioners_count %>人，不参加<%= @unattend_banquet_conventioners_count %>人，不确定参加<%= @unsure_attend_banquet_conventioners_count %>人</li>
+  </ul>
+  <ul>
+    <li><label>闭幕式：</label>参加<%= @attend_closing_conventioners_count %>人，不参加<%= @unattend_closing_conventioners_count %>人，不确定参加<%= @unsure_attend_closing_conventioners_count %>人</li>
+  </ul>
+</fieldset>

@@ -20,8 +20,10 @@ class Conventioner < ActiveRecord::Base
   scope :collection_untaken, where(:collection_taken => false)
   scope :attend_banquet, where(:attend_banquet => true)
   scope :unattend_banquet, where(:attend_banquet => false)
+  scope :unsure_attend_banquet, registered.where(:attend_banquet => nil)
   scope :attend_closing, where(:attend_closing => true)
   scope :unattend_closing, where(:attend_closing => false)
+  scope :unsure_attend_closing, registered.where(:attend_closing => nil)
   
   def registered?
     !registered_at.blank?
