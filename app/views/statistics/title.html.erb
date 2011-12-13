@@ -2,7 +2,7 @@
 <fieldset class="form-generic">
   <% @titles.each do |title| %>
     <ul>
-      <li><label><%= title.name %>：</label>共<%= link_to title.conventioners.size, title, :target => '_blank' %>人，已签到<%= link_to title.conventioners.registered.size, title_path(title, :registered => true), :target => '_blank' %>人，未签到<%= link_to title.conventioners.unregistered.size, title_path(title, :unregistered => true), :target => '_blank' %>人</li>
+      <li><label><%= title.name %>：</label>共<%= link_to title.conventioners.size, title, :target => '_blank' %>人，已签到<%= link_to title.conventioners.registered.size, title_path(title, :registered => true), :target => '_blank' %>人，未签到<%= link_to title.conventioners.unregistered.size, title_path(title, :unregistered => true), :target => '_blank' %>人，参加晚宴<%= link_to title.conventioners.attend_banquet.size, title_path(title, :attend_banquet => true), :target => '_blank' %>人，不参加晚宴<%= link_to title.conventioners.unattend_banquet.size, title_path(title, :unattend_banquet => true), :target => '_blank' %>人，参加闭幕式<%= link_to title.conventioners.attend_closing.size, title_path(title, :attend_closing => true), :target => '_blank' %>人，不参加闭幕式<%= link_to title.conventioners.unattend_closing.size, title_path(title, :unattend_closing => true), :target => '_blank' %>人</li>
     </ul>
   <% end %>
 </fieldset>

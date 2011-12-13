@@ -11,6 +11,14 @@ class TitlesController < ApplicationController
       @conventioners = @title.conventioners.registered
     elsif !params[:unregistered].blank?
       @conventioners = @title.conventioners.unregistered
+    elsif !params[:attend_banquet].blank?
+      @conventioners = @title.conventioners.registered.attend_banquet
+    elsif !params[:unattend_banquet].blank?
+      @conventioners = @title.conventioners.registered.unattend_banquet
+    elsif !params[:attend_closing].blank?
+      @conventioners = @title.conventioners.registered.attend_closing
+    elsif !params[:unattend_closing].blank?
+      @conventioners = @title.conventioners.registered.unattend_closing
     else
       @conventioners = @title.conventioners
     end

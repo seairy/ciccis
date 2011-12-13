@@ -18,6 +18,10 @@ class Conventioner < ActiveRecord::Base
   scope :collection_required, where(:collection_required => true).includes(:room).order('rooms.hotel_id ASC').includes(:country).order('countries.continent_id ASC').order(:country_id)
   scope :collection_taken, where(:collection_taken => true)
   scope :collection_untaken, where(:collection_taken => false)
+  scope :attend_banquet, where(:attend_banquet => true)
+  scope :unattend_banquet, where(:attend_banquet => false)
+  scope :attend_closing, where(:attend_closing => true)
+  scope :unattend_closing, where(:attend_closing => false)
   
   def registered?
     !registered_at.blank?
