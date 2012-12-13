@@ -19,7 +19,6 @@
           <li><%= link_to '综合统计', general_statistics_path %></li>
           <li><%= link_to '酒店入住统计', occupation_statistics_path %></li>
           <li><%= link_to '身份统计', title_statistics_path %></li>
-          <li><%= link_to '资料汇编统计', collection_statistics_path %></li>
         </ul>
         <h3>参会代表管理</h3>
         <ul>
@@ -28,12 +27,6 @@
           <li><%= link_to '搜索参会代表', search_conventioners_path %></li>
           <li><%= link_to '参会代表列表', conventioners_path %></li>
           <% permissable_for [User::ROLE_EMPLOYEE] do %><li><%= link_to '添加参会代表', new_conventioner_path %></li><% end %>
-        </ul>
-        <h3>孔院管理</h3>
-        <ul>
-          <li><%= link_to '搜索孔院', search_confucius_institutes_path %></li>
-          <li><%= link_to '孔院列表', confucius_institutes_path %></li>
-          <% permissable_for [User::ROLE_EMPLOYEE] do %><li><%= link_to '添加孔院', new_confucius_institute_path %></li><% end %>
         </ul>
         <h3>酒店及房型管理</h3>
         <ul>
@@ -51,11 +44,7 @@
         <ul>
           <% permissable_for [User::ROLE_ADMIN] do %><li><%= link_to '分析未级联数据', analyze_uncascaded_data_path %></li><% end %>
           <% permissable_for [User::ROLE_EMPLOYEE] do %><li><%= link_to '分析重复姓名数据', analyze_duplicated_name_data_path %></li><% end %>
-          <% permissable_for [User::ROLE_ADMIN] do %><li><%= link_to '分析孔院资料汇编数据', analyze_collection_required_data_path %></li><% end %>
-          <% permissable_for [User::ROLE_ADMIN] do %><li><%= link_to '批量更新未级联孔院数据', batch_update_uncascaded_confucius_institute_data_path %></li><% end %>
           <li><%= link_to '所有参会代表导出Excel', all_conventioners_excels_path(:format => :xls) %></li>
-          <li><%= link_to '领取资料汇编代表导出Excel', collection_required_conventioners_excels_path(:format => :xls) %></li>
-          <li><%= link_to '参加闭幕式代表导出Excel', attend_closing_conventioners_excels_path(:format => :xls) %></li>
         </ul>
         <h3>系统管理</h3>
         <ul>

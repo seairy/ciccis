@@ -23,6 +23,15 @@
 <fieldset class="form-generic">
   <legend>出席活动统计</legend>
   <ul>
+    <li><label>开幕式：</label>参加<%= @attend_opening_conventioners_count %>人，不参加<%= @unattend_opening_conventioners_count %>人，不确定参加<%= @unsure_attend_opening_conventioners_count %>人</li>
+  </ul>
+  <ul>
+    <li><label>演出：</label>参加<%= @attend_show_conventioners_count %>人，不参加<%= @unattend_show_conventioners_count %>人，不确定参加<%= @unsure_attend_show_conventioners_count %>人</li>
+  </ul>
+  <ul>
+    <li><label>说明会：</label>参加<%= @attend_explanation_conventioners_count %>人，不参加<%= @unattend_explanation_conventioners_count %>人，不确定参加<%= @unsure_attend_explanation_conventioners_count %>人</li>
+  </ul>
+  <ul>
     <li><label>晚宴：</label>参加<%= @attend_banquet_conventioners_count %>人，不参加<%= @unattend_banquet_conventioners_count %>人，不确定参加<%= @unsure_attend_banquet_conventioners_count %>人</li>
   </ul>
   <ul>

@@ -4,9 +4,6 @@
     <li><label>国籍数据：</label>有效：<%= @valid_country_count %> 无效：<%= link_to @invalid_country_count, invalid_country_data_path %></li>
   </ul>
   <ul>
-    <li><label>孔院数据：</label>有效：<%= @valid_ci_count %> 无效：<%= link_to @invalid_ci_count, invalid_confucius_institute_data_path %></li>
-  </ul>
-  <ul>
     <li><label>身份数据：</label><span class="no-warp-content"><%= @titles.join '，' %></span><div class="cb"></div></li>
   </ul>
   <ul>
@@ -15,7 +12,6 @@
 </fieldset>
 <div class="operation-generic">
   <%= link_to '级联国籍数据', cascade_country_data_path, :class => 'button' %>
-  <%= link_to '级联孔院数据', cascade_confucius_institute_data_path, :class => 'button' %>
   <%= link_to '级联身份数据', cascade_title_data_path, :class => 'button' %>
   <%= link_to '级联酒店数据', cascade_hotel_data_path, :class => 'button' %>
 </div>

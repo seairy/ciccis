@@ -10,20 +10,17 @@ class DataController < ApplicationController
     @invalid_hotel_count = 0
     @titles = []
     Conventioner.all.each do |c|
-      unless c.tmp_country.nil?
-        Country.where(:name => c.tmp_country).first.blank? ? @invalid_country_count += 1 : @valid_country_count += 1
+      unless c.plain_country.nil?
+        Country.where(:name => c.plain_country).first.blank? ? @invalid_country_count += 1 : @valid_country_count += 1
       end
-      unless c.tmp_confucius_institute.blank?
-        (!c.tmp_confucius_institute.blank? and ConfuciusInstitute.where(:name => c.tmp_confucius_institute).first.blank?) ? @invalid_ci_count += 1 : @valid_ci_count += 1
-      end
-      c.tmp_titles.split('，').each{|t| @titles << t unless t.blank?} unless c.tmp_titles.nil?
-      if !c.tmp_hotel.nil? and !c.tmp_room.nil?
-        unless c.tmp_hotel.blank?
-          hotel = Hotel.where(:name => c.tmp_hotel).first
+      c.plain_title.split('，').each{|t| @titles << t unless t.blank?} unless c.plain_title.nil?
+      if !c.plain_hotel.nil? and !c.plain_room.nil?
+        unless c.plain_hotel.blank?
+          hotel = Hotel.where(:name => c.plain_hotel).first
           if hotel.blank?
             @invalid_hotel_count += 1
           else
-            hotel.rooms.where(:name => c.tmp_room).first.blank? ? @invalid_hotel_count += 1 : @valid_hotel_count += 1
+            hotel.rooms.where(:name => c.plain_room).first.blank? ? @invalid_hotel_count += 1 : @valid_hotel_count += 1
           end
         end
       end
@@ -49,11 +46,11 @@ class DataController < ApplicationController
   
   def cascade_country
     Conventioner.all.each do |c|
-      unless c.tmp_country.blank?
-        country = Country.where(:name => c.tmp_country).first
+      unless c.plain_country.blank?
+        country = Country.where(:name => c.plain_country).first
         unless country.blank?
           c.country_id = country.id
-          c.tmp_country = nil
+          c.plain_country = nil
           c.save
         end
       end
@@ -75,12 +72,12 @@ class DataController < ApplicationController
   
   def cascade_title
     Conventioner.all.each do |c|
-      title_names = c.tmp_titles.split('，')
+      title_names = c.plain_title.split('，')
       title_names.each do |n|
         title = Title.where(:name => n).first || Title.create({ :name => n })
         Identity.create({ :conventioner_id => c.id, :title_id => title.id })
       end
-      c.tmp_titles = nil
+      c.plain_title = nil
       c.save
     end
     redirect_to analyze_uncascaded_data_path, :notice => '操作完成'
@@ -88,14 +85,14 @@ class DataController < ApplicationController
   
   def cascade_hotel
     Conventioner.all.each do |c|
-      if !c.tmp_hotel.blank? and !c.tmp_room.blank?
-        hotel = Hotel.where(:name => c.tmp_hotel).first
+      if !c.plain_hotel.blank? and !c.plain_room.blank?
+        hotel = Hotel.where(:name => c.plain_hotel).first
         unless hotel.blank?
-          room = hotel.rooms.where(:name => c.tmp_room).first
+          room = hotel.rooms.where(:name => c.plain_room).first
           unless room.blank?
             c.room_id = room.id
-            c.tmp_hotel = nil
-            c.tmp_room = nil
+            c.plain_hotel = nil
+            c.plain_room = nil
             c.save
           end
         end
@@ -107,7 +104,7 @@ class DataController < ApplicationController
   def invalid_country
     @conventioners = []
     Conventioner.all.each do |c|
-      @conventioners << c if Country.where(:name => c.tmp_country).first.blank? and !c.tmp_country.nil?
+      @conventioners << c if Country.where(:name => c.plain_country).first.blank? and !c.plain_country.nil?
     end
   end
   
@@ -121,12 +118,12 @@ class DataController < ApplicationController
   def invalid_hotel
     @conventioners = []
     Conventioner.all.each do |c|
-      unless c.tmp_hotel.blank?
-        hotel = Hotel.where(:name => c.tmp_hotel).first
+      unless c.plain_hotel.blank?
+        hotel = Hotel.where(:name => c.plain_hotel).first
         if hotel.blank?
           @conventioners << c
         else
-          @conventioners << c if hotel.rooms.where(:name => c.tmp_room).first.blank?
+          @conventioners << c if hotel.rooms.where(:name => c.plain_room).first.blank?
         end
       end
     end

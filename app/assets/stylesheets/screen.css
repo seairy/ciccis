@@ -154,6 +154,11 @@ fieldset.form-generic ul li {
 	list-style: none;
 	line-height: 18px;
 }
+fieldset.form-generic ul li.seat span {
+	font-size: 16px;
+	color: red;
+	font-weight: bold;
+}
 fieldset.form-generic ul li label {
 	display: inline-block;
 	width: 140px;

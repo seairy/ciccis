@@ -11,7 +11,7 @@
     <li><label>国籍：</label><%= @conventioner.country.name %></li>
   </ul>
   <ul>
-    <li><label>所属孔院：</label><%= human_confucius_institute_for @conventioner.confucius_institute %></li>
+    <li><label>所属孔院：</label><%= @conventioner.confucius_institute %></li>
   </ul>
   <ul>
     <li><label>工作单位：</label><%= @conventioner.work_unit %></li>
@@ -41,16 +41,13 @@
     <li><label>航班号：</label><%= @conventioner.flight_number %></li>
   </ul>
   <ul>
+    <li class="seat"><label>开幕式座位：</label><%= human_seat_for @conventioner.opening_seat %></li>
+  </ul>
+  <ul>
+    <li class="seat"><label>演出座位：</label><%= human_seat_for @conventioner.show_seat %></li>
+  </ul>
+  <ul>
     <li><label>离京时间：</label><%= human_datetime_for @conventioner.returned_at %></li>
-  </ul>
-  <ul>
-    <li><label>领取会议材料：</label><%= human_required_for @conventioner.stuff_required? %></li>
-  </ul>
-  <ul>
-    <li><label>领取《飞虎情缘》DVD：</label><%= human_required_for @conventioner.dvd_required? %></li>
-  </ul>
-  <ul>
-    <li><label>领取孔子学院资料汇编：</label><%= human_required_for @conventioner.collection_required? %>，编号<%= @conventioner.collection_number %></li>
   </ul>
   <ul>
     <li><label>项目官员：</label><%= @conventioner.person_in_charge %></li>
@@ -69,40 +66,13 @@
       <li><label>操作人：</label><%= @conventioner.registered_by %></li>
     </ul>
     <ul>
-      <li><label>领取会议材料：</label>
-        <% if @conventioner.stuff_required? %>
-          <%= human_taken_for @conventioner.stuff_taken %>
-        <% else %>
-          <span class="cred">不需要领取</span>
-        <% end %>
-      </li>
-    </ul>
-    <ul>
-      <li><label>领取《飞虎情缘》DVD：</label>
-        <% if @conventioner.dvd_required? %>
-          <%= human_taken_for @conventioner.dvd_taken %>
-        <% else %>
-          <span class="cred">不需要领取</span>
-        <% end %>
-      </li>
-    </ul>
-    <ul>
-      <li><label>领取孔子学院资料汇编：</label>
-        <% if @conventioner.collection_required? %>
-          <%= human_taken_for @conventioner.collection_taken %>，编号<%= @conventioner.collection_number %>
-        <% else %>
-          <span class="cred">不需要领取</span>
-        <% end %>
-      </li>
-    </ul>
-    <ul>
-      <li><label>是否计划参加游览：</label><%= human_tour_for @conventioner.planed_tour_place %></li>
-    </ul>
-    <ul>
-      <li><label>是否参加游览：</label><%= human_tour_for @conventioner.tour_place %></li>
+      <li><label>领取会议材料：</label><%= human_taken_for @conventioner.stuff_taken %></li>
     </ul>
     <ul>
       <li><label>是否参加开幕式：</label><%= human_boolean_for @conventioner.attend_opening? %></li>
+    </ul>
+    <ul>
+      <li><label>是否参加演出：</label><%= human_boolean_for @conventioner.attend_show? %></li>
     </ul>
     <ul>
       <li><label>是否参加晚宴：</label><%= human_boolean_for @conventioner.attend_banquet? %></li>

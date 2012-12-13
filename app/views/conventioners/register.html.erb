@@ -11,7 +11,7 @@
     <li><label>国籍：</label><%= @conventioner.country.name %></li>
   </ul>
   <ul>
-    <li><label>所属孔院：</label><%= human_confucius_institute_for @conventioner.confucius_institute %></li>
+    <li><label>所属孔院：</label><%= @conventioner.confucius_institute %></li>
   </ul>
   <ul>
     <li><label>工作单位：</label><%= @conventioner.work_unit %></li>
@@ -44,6 +44,12 @@
     <li><label>离京时间：</label><%= human_datetime_for @conventioner.returned_at %></li>
   </ul>
   <ul>
+    <li class="seat"><label>开幕式座位：</label><%= human_seat_for @conventioner.opening_seat %></li>
+  </ul>
+  <ul>
+    <li class="seat"><label>演出座位：</label><%= human_seat_for @conventioner.show_seat %></li>
+  </ul>
+  <ul>
     <li><label>项目官员：</label><%= @conventioner.person_in_charge %></li>
   </ul>
   <ul>
@@ -54,37 +60,13 @@
   <fieldset class="form-generic">
     <legend>确认信息</legend>
     <ul>
-      <li><label>领取会议材料：</label>
-        <% if @conventioner.stuff_required? %>
-          <%= radio_button :conventioner, :stuff_taken, 1, :checked => true %>领取 <%= radio_button :conventioner, :stuff_taken, 0 %>未领取
-        <% else %>
-          <span class="cred">不需要领取</span>
-        <% end %>
-      </li>
-    </ul>
-    <ul>
-      <li><label>领取《飞虎情缘》DVD：</label>
-        <% if @conventioner.dvd_required? %>
-          <%= radio_button :conventioner, :dvd_taken, 1, :checked => true %>领取 <%= radio_button :conventioner, :dvd_taken, 0 %>未领取
-        <% else %>
-          <span class="cred">不需要领取</span>
-        <% end %>
-      </li>
-    </ul>
-    <ul>
-      <li><label>领取孔子学院资料汇编：</label>
-        <% if @conventioner.collection_required? %>
-          编号<%= @conventioner.collection_number %> <%= radio_button :conventioner, :collection_taken, 1, :checked => true %>领取 <%= radio_button :conventioner, :collection_taken, 0 %>未领取
-        <% else %>
-          <span class="cred">不需要领取</span>
-        <% end %>
-      </li>
-    </ul>
-    <ul>
-      <li><label>是否参加游览：</label><%= radio_button :conventioner, :tour_place, 1 %>中国国家博物馆 <%= radio_button :conventioner, :tour_place, 2 %>中国美术馆 <%= radio_button :conventioner, :tour_place, 0 %>不参加</li>
+      <li><label>领取会议材料：</label><%= radio_button :conventioner, :stuff_taken, 1, :checked => true %>领取 <%= radio_button :conventioner, :stuff_taken, 0 %>未领取</li>
     </ul>
     <ul>
       <li><label>是否参加开幕式：</label><%= radio_button :conventioner, :attend_opening, 1 %>参加 <%= radio_button :conventioner, :attend_opening, 0 %>不参加</li>
+    </ul>
+    <ul>
+      <li><label>是否参加演出：</label><%= radio_button :conventioner, :attend_show, 1 %>参加 <%= radio_button :conventioner, :attend_show, 0 %>不参加</li>
     </ul>
     <ul>
       <li><label>是否参加晚宴：</label><%= radio_button :conventioner, :attend_banquet, 1 %>参加 <%= radio_button :conventioner, :attend_banquet, 0 %>不参加</li>

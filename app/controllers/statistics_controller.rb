@@ -10,6 +10,15 @@ class StatisticsController < ApplicationController
     @consulate_conventioners_count = Conventioner.consulate.size
     @voting_conventioners_count = Conventioner.voting.size
     @nonvoting_conventioners_count = Conventioner.nonvoting.size
+    @attend_opening_conventioners_count = Conventioner.attend_opening.size
+    @unattend_opening_conventioners_count = Conventioner.unattend_opening.size
+    @unsure_attend_opening_conventioners_count = Conventioner.unsure_attend_opening.size
+    @attend_show_conventioners_count = Conventioner.attend_show.size
+    @unattend_show_conventioners_count = Conventioner.unattend_show.size
+    @unsure_attend_show_conventioners_count = Conventioner.unsure_attend_show.size
+    @attend_explanation_conventioners_count = Conventioner.attend_explanation.size
+    @unattend_explanation_conventioners_count = Conventioner.unattend_explanation.size
+    @unsure_attend_explanation_conventioners_count = Conventioner.unsure_attend_explanation.size
     @attend_banquet_conventioners_count = Conventioner.attend_banquet.size
     @unattend_banquet_conventioners_count = Conventioner.unattend_banquet.size
     @unsure_attend_banquet_conventioners_count = Conventioner.unsure_attend_banquet.size
@@ -25,11 +34,6 @@ class StatisticsController < ApplicationController
   
   def title
     @titles = Title.all
-  end
-  
-  def collection
-    @conventioners = Conventioner.collection_required
-    @hotels = Hotel.all
   end
 end
 

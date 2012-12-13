@@ -12,7 +12,7 @@
       <li><label>国籍：</label><%= f.select :country_id, option_groups_from_collection_for_select(all_continents, :countries, :name, :id, :name) %></li>
     </ul>
     <ul>
-      <li><label>所属孔院：</label><%= f.select :confucius_institute_id, option_groups_from_collection_for_select(all_continents, :confucius_institutes, :name, :id, :name), :prompt => '不属于任何孔院' %></li>
+      <li><label>所属孔院：</label><%= f.text_field :confucius_institute, :class => 'text-field' %></li>
     </ul>
     <ul>
       <li><label>入住酒店及房型：</label><%= f.select :room_id, option_groups_from_collection_for_select(all_hotels, :rooms, :name, :id, :name_with_details), :prompt => '不需要住宿' %></li>
@@ -22,9 +22,6 @@
     </ul>
     <ul>
       <li><label>所在机构任职：</label><%= f.text_field :position_in_wn, :class => 'text-field' %></li>
-    </ul>
-    <ul>
-      <li><label>孔院任职：</label><%= f.text_field :position_in_ci, :class => 'text-field' %></li>
     </ul>
     <ul>
       <li><label>电子邮件：</label><%= f.text_field :email, :class => 'text-field' %></li>
@@ -48,16 +45,13 @@
       <li><label>离京时间：</label><%= f.datetime_select :returned_at, :use_month_numbers => true, :discard_minute => true %></li>
     </ul>
     <ul>
-      <li><label>领取会议材料：</label><%= f.radio_button :stuff_required, 1 %>需要 <%= f.radio_button :stuff_required, 0 %>不需要</li>
+      <li><label>航班号：</label><%= f.text_field :flight_number, :class => 'text-field small' %></li>
     </ul>
     <ul>
-      <li><label>领取《飞虎情缘》DVD：</label><%= f.radio_button :dvd_required, 1 %>需要 <%= f.radio_button :dvd_required, 0 %>不需要</li>
+      <li><label>开幕式座位：</label><%= f.text_field :opening_seat, :class => 'text-field' %>
     </ul>
     <ul>
-      <li><label>领取孔子学院资料汇编：</label><%= f.radio_button :collection_required, 1 %>需要 <%= f.radio_button :collection_required, 0 %>不需要</li>
-    </ul>
-    <ul>
-      <li><label>计划参加游览：</label><%= f.radio_button :planed_tour_place, 1 %>中国国家博物馆 <%= f.radio_button :planed_tour_place, 2 %>中国美术馆 <%= f.radio_button :planed_tour_place, 0 %>不参加</li>
+      <li><label>演出座位：</label><%= f.text_field :show_seat, :class => 'text-field' %></li>
     </ul>
     <ul>
       <li><label>项目官员：</label><%= f.text_field :person_in_charge, :class => 'text-field' %></li>

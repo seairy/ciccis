@@ -2,7 +2,7 @@ Ciccis::Application.routes.draw do
   root :to => 'statistics#general'
   resources :statistics do
     collection do
-      get :general, :occupation, :title, :collection
+      get :general, :occupation, :title
     end
   end
   resources :conventioners do
@@ -34,12 +34,12 @@ Ciccis::Application.routes.draw do
   resources :titles
   resources :excels do
     collection do
-      get :all_confucius_institutes, :collection_required_conventioners, :all_conventioners, :attend_closing_conventioners
+      get :all_conventioners
     end
   end
   resources :data do
     collection do
-      get :analyze_uncascaded, :analyze_duplicated_name, :cascade_country, :cascade_confucius_institute, :cascade_title, :cascade_hotel, :invalid_country, :invalid_confucius_institute, :invalid_hotel, :analyze_collection_required, :batch_update_uncascaded_confucius_institute
+      get :analyze_uncascaded, :analyze_duplicated_name, :cascade_country, :cascade_title, :cascade_hotel, :invalid_country, :invalid_hotel
       post :analyze_collection_required
     end
   end

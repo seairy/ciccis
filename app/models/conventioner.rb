@@ -1,7 +1,6 @@
 class Conventioner < ActiveRecord::Base
   FROM_DOMESTIC, FROM_FOREIGN, FROM_CONSULATE = 1, 2, 3
   belongs_to :country
-  belongs_to :confucius_institute
   belongs_to :room
   has_many :operations, :dependent => :destroy
   has_many :identities, :dependent => :destroy
@@ -18,6 +17,15 @@ class Conventioner < ActiveRecord::Base
   scope :collection_required, where(:collection_required => true).includes(:room).order('rooms.hotel_id ASC').includes(:country).order('countries.continent_id ASC').order(:country_id)
   scope :collection_taken, where(:collection_taken => true)
   scope :collection_untaken, where(:collection_taken => false)
+  scope :attend_opening, where(:attend_opening => true)
+  scope :unattend_opening, where(:attend_opening => false)
+  scope :unsure_attend_opening, registered.where(:attend_opening => nil)
+  scope :attend_show, where(:attend_show => true)
+  scope :unattend_show, where(:attend_show => false)
+  scope :unsure_attend_show, registered.where(:attend_show => nil)
+  scope :attend_explanation, where(:attend_explanation => true)
+  scope :unattend_explanation, where(:attend_explanation => false)
+  scope :unsure_attend_explanation, registered.where(:attend_explanation => nil)
   scope :attend_banquet, where(:attend_banquet => true)
   scope :unattend_banquet, where(:attend_banquet => false)
   scope :unsure_attend_banquet, registered.where(:attend_banquet => nil)
@@ -53,7 +61,7 @@ class Conventioner < ActiveRecord::Base
     def search keyword
       conventioner_ids = Country.named(keyword).inject([]){|a, c| a << c.conventioners.collect{|co| co.id}}
       conventioner_ids << ConfuciusInstitute.named(keyword).inject([]){|a, c| a << c.conventioners.collect{|co| co.id}}
-      conventioner_ids << where('chinese_name LIKE ? OR foreign_name LIKE ? OR work_unit LIKE ?', "%#{keyword}%", "%#{keyword}%", "%#{keyword}%").all.collect{|c| c.id}
+      conventioner_ids << where('chinese_name LIKE ? OR foreign_name LIKE ? OR confucius_institute LIKE ? OR work_unit LIKE ?', "%#{keyword}%", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%").all.collect{|c| c.id}
       where(id:conventioner_ids.flatten.compact.uniq)
     end
   end

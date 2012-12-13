@@ -6,20 +6,5 @@ class ExcelsController < ApplicationController
     @hotels = Hotel.all
     @unoccupied_conventioners = Conventioner.unoccupied
   end
-  
-  def all_confucius_institutes
-    @confucius_institutes = ConfuciusInstitute.all
-    respond_with @confucius_institutes
-  end
-  
-  def collection_required_conventioners
-    @conventioners = Conventioner.collection_required
-    respond_with @conventioners
-  end
-  
-  def attend_closing_conventioners
-    @conventioners = Conventioner.attend_closing
-    respond_with @conventioners
-  end
 end
 

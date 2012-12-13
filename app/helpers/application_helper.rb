@@ -159,6 +159,14 @@ module ApplicationHelper
     nonvoting ? '列席代表' : '普通代表'
   end
   
+  def human_seat_for seat
+    raw seat.blank? ? '未安排座位' : "<span>#{seat}</span>"
+  end
+  
+  def human_plain_seat_for seat
+    seat.blank? ? '未安排座位' : seat
+  end
+  
   def all_continents
     Continent.all
   end

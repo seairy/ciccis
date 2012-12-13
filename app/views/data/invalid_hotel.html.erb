@@ -14,8 +14,8 @@
       <tr class="<%= odevity_tag index %>">
         <td><%= link_to conventioner.chinese_name, conventioner %></td>
         <td><%= link_to conventioner.foreign_name, conventioner %></td>
-        <td><%= conventioner.tmp_hotel %></td>
-        <td><%= conventioner.tmp_room %></td>
+        <td><%= conventioner.plain_hotel %></td>
+        <td><%= conventioner.plain_room %></td>
         <td><%= raw crud_for_list_tag(conventioner) %></td>
       </tr>
     <% end %>
