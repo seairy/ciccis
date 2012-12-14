@@ -25,6 +25,36 @@ class StatisticsController < ApplicationController
     @attend_closing_conventioners_count = Conventioner.attend_closing.size
     @unattend_closing_conventioners_count = Conventioner.unattend_closing.size
     @unsure_attend_closing_conventioners_count = Conventioner.unsure_attend_closing.size
+    @opening_a_class_conventioners_count = Conventioner.opening_a_class.size
+    @opening_a_class_registered_conventioners_count = Conventioner.opening_a_class.registered.size
+    @opening_a_class_unregistered_conventioners_count = Conventioner.opening_a_class.unregistered.size
+    @opening_b_class_conventioners_count = Conventioner.opening_b_class.size
+    @opening_b_class_registered_conventioners_count = Conventioner.opening_b_class.registered.size
+    @opening_b_class_unregistered_conventioners_count = Conventioner.opening_b_class.unregistered.size
+    @opening_c_class_conventioners_count = Conventioner.opening_c_class.size
+    @opening_c_class_registered_conventioners_count = Conventioner.opening_c_class.registered.size
+    @opening_c_class_unregistered_conventioners_count = Conventioner.opening_c_class.unregistered.size
+    @opening_d_class_conventioners_count = Conventioner.opening_d_class.size
+    @opening_d_class_registered_conventioners_count = Conventioner.opening_d_class.registered.size
+    @opening_d_class_unregistered_conventioners_count = Conventioner.opening_d_class.unregistered.size
+    @opening_e_class_conventioners_count = Conventioner.opening_e_class.size
+    @opening_e_class_registered_conventioners_count = Conventioner.opening_e_class.registered.size
+    @opening_e_class_unregistered_conventioners_count = Conventioner.opening_e_class.unregistered.size
+    @opening_f_class_conventioners_count = Conventioner.opening_f_class.size
+    @opening_f_class_registered_conventioners_count = Conventioner.opening_f_class.registered.size
+    @opening_f_class_unregistered_conventioners_count = Conventioner.opening_f_class.unregistered.size
+    @show_a_class_conventioners_count = Conventioner.show_a_class.size
+    @show_a_class_registered_conventioners_count = Conventioner.show_a_class.registered.size
+    @show_a_class_unregistered_conventioners_count = Conventioner.show_a_class.unregistered.size
+    @show_b_class_conventioners_count = Conventioner.show_b_class.size
+    @show_b_class_registered_conventioners_count = Conventioner.show_b_class.registered.size
+    @show_b_class_unregistered_conventioners_count = Conventioner.show_b_class.unregistered.size
+    @show_c_class_conventioners_count = Conventioner.show_c_class.size
+    @show_c_class_registered_conventioners_count = Conventioner.show_c_class.registered.size
+    @show_c_class_unregistered_conventioners_count = Conventioner.show_c_class.unregistered.size
+    @show_d_class_conventioners_count = Conventioner.show_d_class.size
+    @show_d_class_registered_conventioners_count = Conventioner.show_d_class.registered.size
+    @show_d_class_unregistered_conventioners_count = Conventioner.show_d_class.unregistered.size
   end
   
   def occupation

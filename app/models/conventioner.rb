@@ -32,6 +32,18 @@ class Conventioner < ActiveRecord::Base
   scope :attend_closing, where(:attend_closing => true)
   scope :unattend_closing, where(:attend_closing => false)
   scope :unsure_attend_closing, registered.where(:attend_closing => nil)
+  scope :opening_a_class, where(:opening_seat => 'A')
+  scope :opening_b_class, where(:opening_seat => 'B')
+  scope :opening_c_class, where(:opening_seat => 'C')
+  scope :opening_d_class, where(:opening_seat => 'D')
+  scope :opening_e_class, where(:opening_seat => 'E')
+  scope :opening_f_class, where(:opening_seat => 'F')
+  scope :have_opening_seat, where('opening_seat <> \'\'')
+  scope :show_a_class, where(:show_seat => 'A')
+  scope :show_b_class, where(:show_seat => 'B')
+  scope :show_c_class, where(:show_seat => 'C')
+  scope :show_d_class, where(:show_seat => 'D')
+  scope :have_show_seat, where('show_seat <> \'\'')
   
   def registered?
     !registered_at.blank?

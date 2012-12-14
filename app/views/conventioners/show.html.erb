@@ -105,7 +105,7 @@
   <% end %>
 </fieldset>
 <div class="operation-generic">
-  <%= link_to '现在进行签到', register_conventioner_path(@conventioner), :class => 'button' unless @conventioner.registered? %>
+  <% permissable_for [User::ROLE_EMPLOYEE, User::ROLE_VOLUNTEER] do %><%= link_to '现在进行签到', register_conventioner_path(@conventioner), :class => 'button' unless @conventioner.registered? %><% end %>
   <% permissable_for [User::ROLE_EMPLOYEE] do %><%= link_to '编辑', edit_conventioner_path(@conventioner), :class => 'button' %><% end %>
   <% permissable_for [User::ROLE_EMPLOYEE] do %><%= link_to '删除', @conventioner, :method => :delete, :confirm => '确定删除该记录？', :class => 'button' %><% end %>
   <%= link_to '返回参会代表列表', conventioners_path, :class => 'button' %>

@@ -31,6 +31,110 @@ class ConventionersController < ApplicationController
     @conventioners = Conventioner.unoccupied.ordered.paginate :page => params[:page]
   end
   
+  def opening_seats
+    if params[:seat_class] == 'A'
+      if !params[:registered].blank?
+        @conventioners = Conventioner.opening_a_class.registered.ordered.paginate :page => params[:page]
+      elsif !params[:unregistered].blank?
+        @conventioners = Conventioner.opening_a_class.unregistered.ordered.paginate :page => params[:page]
+      else
+        @conventioners = Conventioner.opening_a_class.ordered.paginate :page => params[:page]
+      end
+    elsif params[:seat_class] == 'B'
+      if !params[:registered].blank?
+        @conventioners = Conventioner.opening_b_class.registered.ordered.paginate :page => params[:page]
+      elsif !params[:unregistered].blank?
+        @conventioners = Conventioner.opening_b_class.unregistered.ordered.paginate :page => params[:page]
+      else
+        @conventioners = Conventioner.opening_b_class.ordered.paginate :page => params[:page]
+      end
+    elsif params[:seat_class] == 'C'
+      if !params[:registered].blank?
+        @conventioners = Conventioner.opening_c_class.registered.ordered.paginate :page => params[:page]
+      elsif !params[:unregistered].blank?
+        @conventioners = Conventioner.opening_c_class.unregistered.ordered.paginate :page => params[:page]
+      else
+        @conventioners = Conventioner.opening_c_class.ordered.paginate :page => params[:page]
+      end
+    elsif params[:seat_class] == 'D'
+      if !params[:registered].blank?
+        @conventioners = Conventioner.opening_d_class.registered.ordered.paginate :page => params[:page]
+      elsif !params[:unregistered].blank?
+        @conventioners = Conventioner.opening_d_class.unregistered.ordered.paginate :page => params[:page]
+      else
+        @conventioners = Conventioner.opening_d_class.ordered.paginate :page => params[:page]
+      end
+    elsif params[:seat_class] == 'E'
+      if !params[:registered].blank?
+        @conventioners = Conventioner.opening_e_class.registered.ordered.paginate :page => params[:page]
+      elsif !params[:unregistered].blank?
+        @conventioners = Conventioner.opening_e_class.unregistered.ordered.paginate :page => params[:page]
+      else
+        @conventioners = Conventioner.opening_e_class.ordered.paginate :page => params[:page]
+      end
+    elsif params[:seat_class] == 'F'
+      if !params[:registered].blank?
+        @conventioners = Conventioner.opening_f_class.registered.ordered.paginate :page => params[:page]
+      elsif !params[:unregistered].blank?
+        @conventioners = Conventioner.opening_f_class.unregistered.ordered.paginate :page => params[:page]
+      else
+        @conventioners = Conventioner.opening_f_class.ordered.paginate :page => params[:page]
+      end
+    else
+      if !params[:registered].blank?
+        @conventioners = Conventioner.have_opening_seat.registered.ordered.paginate :page => params[:page]
+      elsif !params[:unregistered].blank?
+        @conventioners = Conventioner.have_opening_seat.unregistered.ordered.paginate :page => params[:page]
+      else
+        @conventioners = Conventioner.have_opening_seat.ordered.paginate :page => params[:page]
+      end
+    end
+  end
+  
+  def show_seats
+    if params[:seat_class] == 'A'
+      if !params[:registered].blank?
+        @conventioners = Conventioner.show_a_class.registered.ordered.paginate :page => params[:page]
+      elsif !params[:unregistered].blank?
+        @conventioners = Conventioner.show_a_class.unregistered.ordered.paginate :page => params[:page]
+      else
+        @conventioners = Conventioner.show_a_class.ordered.paginate :page => params[:page]
+      end
+    elsif params[:seat_class] == 'B'
+      if !params[:registered].blank?
+        @conventioners = Conventioner.show_b_class.registered.ordered.paginate :page => params[:page]
+      elsif !params[:unregistered].blank?
+        @conventioners = Conventioner.show_b_class.unregistered.ordered.paginate :page => params[:page]
+      else
+        @conventioners = Conventioner.show_b_class.ordered.paginate :page => params[:page]
+      end
+    elsif params[:seat_class] == 'C'
+      if !params[:registered].blank?
+        @conventioners = Conventioner.show_c_class.registered.ordered.paginate :page => params[:page]
+      elsif !params[:unregistered].blank?
+        @conventioners = Conventioner.show_c_class.unregistered.ordered.paginate :page => params[:page]
+      else
+        @conventioners = Conventioner.show_c_class.ordered.paginate :page => params[:page]
+      end
+    elsif params[:seat_class] == 'D'
+      if !params[:registered].blank?
+        @conventioners = Conventioner.show_d_class.registered.ordered.paginate :page => params[:page]
+      elsif !params[:unregistered].blank?
+        @conventioners = Conventioner.show_d_class.unregistered.ordered.paginate :page => params[:page]
+      else
+        @conventioners = Conventioner.show_d_class.ordered.paginate :page => params[:page]
+      end
+    else
+      if !params[:registered].blank?
+        @conventioners = Conventioner.have_show_seat.registered.ordered.paginate :page => params[:page]
+      elsif !params[:unregistered].blank?
+        @conventioners = Conventioner.have_show_seat.unregistered.ordered.paginate :page => params[:page]
+      else
+        @conventioners = Conventioner.have_show_seat.ordered.paginate :page => params[:page]
+      end
+    end
+  end
+  
   def show
     @conventioner = Conventioner.find(params[:id])
   end

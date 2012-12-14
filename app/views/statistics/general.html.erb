@@ -38,3 +38,23 @@
     <li><label>闭幕式：</label>参加<%= @attend_closing_conventioners_count %>人，不参加<%= @unattend_closing_conventioners_count %>人，不确定参加<%= @unsure_attend_closing_conventioners_count %>人</li>
   </ul>
 </fieldset>
+<fieldset class="form-generic">
+  <legend>开幕式座位区域统计</legend>
+  <ul>
+    <li><label>A区域：</label>共<%= link_to @opening_a_class_conventioners_count, opening_seats_conventioners_path(:seat_class => 'A') %>人，已签到<%= link_to @opening_a_class_registered_conventioners_count, opening_seats_conventioners_path(:seat_class => 'A', :registered => true) %>人，未签到<%= link_to @opening_a_class_unregistered_conventioners_count, opening_seats_conventioners_path(:seat_class => 'A', :unregistered => true) %>人</li>
+    <li><label>B区域：</label>共<%= link_to @opening_b_class_conventioners_count, opening_seats_conventioners_path(:seat_class => 'B') %>人，已签到<%= link_to @opening_b_class_registered_conventioners_count, opening_seats_conventioners_path(:seat_class => 'B', :registered => true) %>人，未签到<%= link_to @opening_b_class_unregistered_conventioners_count, opening_seats_conventioners_path(:seat_class => 'B', :unregistered => true) %>人</li>
+    <li><label>C区域：</label>共<%= link_to @opening_c_class_conventioners_count, opening_seats_conventioners_path(:seat_class => 'C') %>人，已签到<%= link_to @opening_c_class_registered_conventioners_count, opening_seats_conventioners_path(:seat_class => 'C', :registered => true) %>人，未签到<%= link_to @opening_c_class_unregistered_conventioners_count, opening_seats_conventioners_path(:seat_class => 'C', :unregistered => true) %>人</li>
+    <li><label>D区域：</label>共<%= link_to @opening_d_class_conventioners_count, opening_seats_conventioners_path(:seat_class => 'D') %>人，已签到<%= link_to @opening_d_class_registered_conventioners_count, opening_seats_conventioners_path(:seat_class => 'D', :registered => true) %>人，未签到<%= link_to @opening_d_class_unregistered_conventioners_count, opening_seats_conventioners_path(:seat_class => 'D', :unregistered => true) %>人</li>
+    <li><label>E区域：</label>共<%= link_to @opening_e_class_conventioners_count, opening_seats_conventioners_path(:seat_class => 'E') %>人，已签到<%= link_to @opening_e_class_registered_conventioners_count, opening_seats_conventioners_path(:seat_class => 'E', :registered => true) %>人，未签到<%= link_to @opening_e_class_unregistered_conventioners_count, opening_seats_conventioners_path(:seat_class => 'E', :unregistered => true) %>人</li>
+    <li><label>F区域：</label>共<%= link_to @opening_f_class_conventioners_count, opening_seats_conventioners_path(:seat_class => 'F') %>人，已签到<%= link_to @opening_f_class_registered_conventioners_count, opening_seats_conventioners_path(:seat_class => 'F', :registered => true) %>人，未签到<%= link_to @opening_f_class_unregistered_conventioners_count, opening_seats_conventioners_path(:seat_class => 'F', :unregistered => true) %>人</li>
+  </ul>
+</fieldset>
+<fieldset class="form-generic">
+  <legend>演出座位区域统计</legend>
+  <ul>
+    <li><label>A区域：</label>共<%= link_to @show_a_class_conventioners_count, show_seats_conventioners_path(:seat_class => 'A') %>人，已签到<%= link_to @show_a_class_registered_conventioners_count, show_seats_conventioners_path(:seat_class => 'A', :registered => true) %>人，未签到<%= link_to @show_a_class_unregistered_conventioners_count, show_seats_conventioners_path(:seat_class => 'A', :unregistered => true) %>人</li>
+    <li><label>B区域：</label>共<%= link_to @show_b_class_conventioners_count, show_seats_conventioners_path(:seat_class => 'B') %>人，已签到<%= link_to @show_b_class_registered_conventioners_count, show_seats_conventioners_path(:seat_class => 'B', :registered => true) %>人，未签到<%= link_to @show_b_class_unregistered_conventioners_count, show_seats_conventioners_path(:seat_class => 'B', :unregistered => true) %>人</li>
+    <li><label>C区域：</label>共<%= link_to @show_c_class_conventioners_count, show_seats_conventioners_path(:seat_class => 'C') %>人，已签到<%= link_to @show_c_class_registered_conventioners_count, show_seats_conventioners_path(:seat_class => 'C', :registered => true) %>人，未签到<%= link_to @show_c_class_unregistered_conventioners_count, show_seats_conventioners_path(:seat_class => 'C', :unregistered => true) %>人</li>
+    <li><label>D区域：</label>共<%= link_to @show_d_class_conventioners_count, show_seats_conventioners_path(:seat_class => 'D') %>人，已签到<%= link_to @show_d_class_registered_conventioners_count, show_seats_conventioners_path(:seat_class => 'D', :registered => true) %>人，未签到<%= link_to @show_d_class_unregistered_conventioners_count, show_seats_conventioners_path(:seat_class => 'D', :unregistered => true) %>人</li>
+  </ul>
+</fieldset>

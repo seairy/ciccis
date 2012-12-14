@@ -7,7 +7,7 @@ Ciccis::Application.routes.draw do
   end
   resources :conventioners do
     collection do
-      get :search, :registered, :unregistered, :unoccupied, :collection_required
+      get :search, :registered, :unregistered, :unoccupied, :collection_required, :opening_seats, :show_seats
     end
     member do
       get :register

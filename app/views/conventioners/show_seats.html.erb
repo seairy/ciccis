@@ -1,9 +1,10 @@
-<h1>参会代表列表<% permissable_for [User::ROLE_EMPLOYEE] do %><span><%= link_to '添加参会代表', new_conventioner_path %></span><% end %></h1>
+<h1>参会者列表</h1>
 <table class="list-generic">
   <tr>
     <th>国籍</th>
     <th>中文名</th>
     <th>外文名</th>
+    <th>演出座位区域</th>
     <th>住宿信息</th>
     <th>签到时间</th>
   </tr>
@@ -15,6 +16,7 @@
         <td><%= conventioner.country.name %></td>
         <td><%= link_to conventioner.chinese_name, conventioner %></td>
         <td><%= link_to conventioner.foreign_name, conventioner %></td>
+        <td><%= conventioner.show_seat %></td>
         <td><%= human_hotel_and_room_for conventioner %></td>
         <td><%= human_register_for conventioner.registered_at %></td>
       </tr>
