@@ -43,7 +43,9 @@ Ciccis::Application.routes.draw do
       post :analyze_collection_required
     end
   end
+  resources :questionnaires
   match 'signin' => 'sessions#new', :as => :signin, :via => [:get]
   match 'signin' => 'sessions#create', :as => :signin, :via => [:post]
   match 'signout' => 'sessions#destroy', :as => :signout
+  match 'q' => 'questionnaires#new'
 end

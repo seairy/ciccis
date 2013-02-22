@@ -49,3 +49,11 @@ function selectUnpopularLanguages(checkboxName) {
 		}
 	}
 }
+
+function toggleChildAmount(clicked) {
+	if (clicked) {
+		$('#child-amount').show();
+	} else {
+		$('#child-amount').hide();
+	}
+}

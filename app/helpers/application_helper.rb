@@ -88,7 +88,7 @@ module ApplicationHelper
   end
   
   def human_text_for text
-    RedCloth.new(text).to_html unless text.blank?
+    raw(RedCloth.new(text).to_html) unless text.blank?
   end
   
   def human_tour_for tour_place
