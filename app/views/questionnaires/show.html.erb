@@ -1,0 +1,57 @@
+<h1>查看调查信息</h1>
+<fieldset class="form-generic">
+  <legend>基本信息</legend>
+  <ul>
+    <li><label>姓名：</label><%= @questionnaire.name %></li>
+  </ul>
+  <ul>
+    <li><label>手机：</label><%= @questionnaire.mobile %></li>
+  </ul>
+  <ul>
+    <li><label>座机：</label><%= @questionnaire.phone %></li>
+  </ul>
+  <ul>
+    <li><label>Email：</label><%= @questionnaire.email %></li>
+  </ul>
+  <ul>
+    <li><label>QQ号：</label><%= @questionnaire.qq %></li>
+  </ul>
+  <ul>
+    <li><label>微博地址：</label><%= @questionnaire.weibo %></li>
+  </ul>
+  <ul>
+    <li><label>微信号：</label><%= @questionnaire.weixin %></li>
+  </ul>
+  <ul>
+    <li><label>常住城市：</label><%= @questionnaire.city %></li>
+  </ul>
+  <ul>
+    <li><label>常住地址：</label><%= @questionnaire.address %></li>
+  </ul>
+  <ul>
+    <li><label>工作单位：</label><%= @questionnaire.organization %></li>
+  </ul>
+  <ul>
+    <li><label>职位名称：</label><%= @questionnaire.title %></li>
+  </ul>
+  <ul>
+    <li><label>是否携配偶参加：</label><%= human_boolean_for @questionnaire.with_spouse? %></li>
+  </ul>
+  <ul>
+    <li><label>是否携子女参加：</label><%= human_boolean_for @questionnaire.with_child? %></li>
+  </ul>
+  <% if @questionnaire.with_child? %>
+  <ul>
+    <li><label>携子女人数：</label><%= @questionnaire.child_amount %></li>
+  </ul>
+  <% end %>
+  <ul>
+    <li><label>可参与时间：</label><%= @questionnaire.will_participate_at %></li>
+  </ul>
+  <ul>
+    <li><label>您对聚会的各种想法：</label><%= @questionnaire.suggestion %></li>
+  </ul>
+</fieldset>
+<div class="operation-generic">
+  <%= link_to '返回调查信息列表', questionnaires_path, :class => 'button' %>
+</div>

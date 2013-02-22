@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BNU电子系99级 十年大聚调查表</title>
+  <%= stylesheet_link_tag "jquery-ui", "meta", "scaffold", "bnu" %>
+  <%= javascript_include_tag "application" %>
+</head>
+<body>
+  <div id="container">
+    <div id="header"><span>BNU电子系99级 十年大聚调查表</span></div>
+    <div id="content">
+      <%= flash_tag %>
+      <%= yield %>
+    </div>
+    <div class="cb"></div>
+    <div id="footer">&copy; Copyright 2013</div>
+  </div>
+</body>
+</html>
