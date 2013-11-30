@@ -32,6 +32,7 @@ class Conventioner < ActiveRecord::Base
   scope :attend_closing, where(:attend_closing => true)
   scope :unattend_closing, where(:attend_closing => false)
   scope :unsure_attend_closing, registered.where(:attend_closing => nil)
+  scope :opening_vip_class, where(:opening_seat => 'VIP')
   scope :opening_a_class, where(:opening_seat => 'A')
   scope :opening_b_class, where(:opening_seat => 'B')
   scope :opening_c_class, where(:opening_seat => 'C')

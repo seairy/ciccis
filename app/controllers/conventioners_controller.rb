@@ -32,7 +32,15 @@ class ConventionersController < ApplicationController
   end
   
   def opening_seats
-    if params[:seat_class] == 'A'
+    if params[:seat_class] == 'VIP'
+      if !params[:registered].blank?
+        @conventioners = Conventioner.opening_vip_class.registered.ordered.paginate :page => params[:page]
+      elsif !params[:unregistered].blank?
+        @conventioners = Conventioner.opening_vip_class.unregistered.ordered.paginate :page => params[:page]
+      else
+        @conventioners = Conventioner.opening_vip_class.ordered.paginate :page => params[:page]
+      end
+    elsif params[:seat_class] == 'A'
       if !params[:registered].blank?
         @conventioners = Conventioner.opening_a_class.registered.ordered.paginate :page => params[:page]
       elsif !params[:unregistered].blank?
@@ -71,14 +79,6 @@ class ConventionersController < ApplicationController
         @conventioners = Conventioner.opening_e_class.unregistered.ordered.paginate :page => params[:page]
       else
         @conventioners = Conventioner.opening_e_class.ordered.paginate :page => params[:page]
-      end
-    elsif params[:seat_class] == 'F'
-      if !params[:registered].blank?
-        @conventioners = Conventioner.opening_f_class.registered.ordered.paginate :page => params[:page]
-      elsif !params[:unregistered].blank?
-        @conventioners = Conventioner.opening_f_class.unregistered.ordered.paginate :page => params[:page]
-      else
-        @conventioners = Conventioner.opening_f_class.ordered.paginate :page => params[:page]
       end
     else
       if !params[:registered].blank?
