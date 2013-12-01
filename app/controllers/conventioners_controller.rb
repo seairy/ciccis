@@ -27,6 +27,10 @@ class ConventionersController < ApplicationController
     end
   end
   
+  def chummage
+    @conventioners = Conventioner.chummage.ordered.paginate :page => params[:page]
+  end
+  
   def unoccupied
     @conventioners = Conventioner.unoccupied.ordered.paginate :page => params[:page]
   end

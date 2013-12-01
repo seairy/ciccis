@@ -1,0 +1,24 @@
+<h1>与他人合住代表列表</h1>
+<table class="list-generic">
+  <tr>
+    <th>国籍</th>
+    <th>中文名</th>
+    <th>外文名</th>
+    <th>酒店名称</th>
+    <th>签到时间</th>
+  </tr>
+  <% if @conventioners.blank? %>
+    <%= raw empty_record_tag %>
+  <% else %>
+    <% @conventioners.each_with_index do |conventioner, index| %>
+      <tr class="<%= odevity_tag index %>">
+        <td><%= conventioner.country.name %></td>
+        <td><%= link_to conventioner.chinese_name, conventioner %></td>
+        <td><%= link_to conventioner.foreign_name, conventioner %></td>
+        <td><%= conventioner.hotel.name %></td>
+        <td><%= human_register_for conventioner.registered_at %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+<%= will_paginate @conventioners %>

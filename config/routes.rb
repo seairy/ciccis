@@ -7,7 +7,7 @@ Ciccis::Application.routes.draw do
   end
   resources :conventioners do
     collection do
-      get :search, :registered, :unregistered, :unoccupied, :collection_required, :opening_seats, :show_seats
+      get :search, :registered, :unregistered, :chummage, :unoccupied, :collection_required, :opening_seats, :show_seats
     end
     member do
       get :register
@@ -43,9 +43,7 @@ Ciccis::Application.routes.draw do
       post :analyze_collection_required
     end
   end
-  resources :questionnaires
   match 'signin' => 'sessions#new', :as => :signin, :via => [:get]
   match 'signin' => 'sessions#create', :as => :signin, :via => [:post]
   match 'signout' => 'sessions#destroy', :as => :signout
-  match 'q' => 'questionnaires#new'
 end

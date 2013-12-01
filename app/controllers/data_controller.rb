@@ -20,7 +20,7 @@ class DataController < ApplicationController
           if hotel.blank?
             @invalid_hotel_count += 1
           else
-            hotel.rooms.where(:name => c.plain_room).first.blank? ? @invalid_hotel_count += 1 : @valid_hotel_count += 1
+            (!c.plain_room.blank? and hotel.rooms.where(:name => c.plain_room).first.blank?) ? @invalid_hotel_count += 1 : @valid_hotel_count += 1
           end
         end
       end
@@ -96,6 +96,13 @@ class DataController < ApplicationController
             c.save
           end
         end
+      elsif !c.plain_hotel.blank? and c.plain_room.blank?
+        hotel = Hotel.where(:name => c.plain_hotel).first
+        unless hotel.blank?
+          c.hotel_id = hotel.id
+          c.plain_hotel = nil
+          c.save
+        end
       end
     end
     redirect_to analyze_uncascaded_data_path, :notice => '操作完成'
@@ -123,7 +130,7 @@ class DataController < ApplicationController
         if hotel.blank?
           @conventioners << c
         else
-          @conventioners << c if hotel.rooms.where(:name => c.plain_room).first.blank?
+          @conventioners << c if !c.plain_room.blank? and hotel.rooms.where(:name => c.plain_room).first.blank?
         end
       end
     end

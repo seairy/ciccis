@@ -26,6 +26,9 @@
     <li><label>电子邮件：</label><%= @conventioner.email %></li>
   </ul>
   <ul>
+    <li><label>联系电话：</label><%= @conventioner.phone %></li>
+  </ul>
+  <ul>
     <li><label>代表类型1：</label><%= human_from_for @conventioner.from %></li>
   </ul>
   <ul>
@@ -35,22 +38,25 @@
     <li><label>代表身份：</label><%= @conventioner.titles.map{|t| t.name}.join '，' %></li>
   </ul>
   <ul>
-    <li><label>抵京时间：</label><%= human_datetime_for @conventioner.arrived_at %></li>
+    <li><label>抵京时间：</label><%= human_date_for @conventioner.arrived_at %></li>
   </ul>
   <ul>
     <li><label>航班号：</label><%= @conventioner.flight_number %></li>
   </ul>
   <ul>
+    <li><label>离京时间：</label><%= human_date_for @conventioner.returned_at %></li>
+  </ul>
+  <ul>
+    <li><label>航班号：</label><%= @conventioner.return_flight_number %></li>
+  </ul>
+  <ul>
     <li class="seat"><label>开幕式座位：</label><%= human_seat_for @conventioner.opening_seat %></li>
   </ul>
   <ul>
-    <li class="seat"><label>演出座位：</label><%= human_seat_for @conventioner.show_seat %></li>
-  </ul>
-  <ul>
-    <li><label>离京时间：</label><%= human_datetime_for @conventioner.returned_at %></li>
-  </ul>
-  <ul>
     <li><label>项目官员：</label><%= @conventioner.person_in_charge %></li>
+  </ul>
+  <ul>
+    <li><label>公自付：</label><%= @conventioner.payment %></li>
   </ul>
   <ul>
     <li><label>备注：</label><%= raw @conventioner.remark %></li>
@@ -98,6 +104,16 @@
     <ul>
       <li><label>房间号：</label><%= @conventioner.room_number %></li>
     </ul>
+    <ul>
+      <li><label>是否吸烟：</label><%= @conventioner.smoking.nil? ? '无要求' : human_boolean_for(@conventioner.smoking?)  %></li>
+    </ul>
+    <ul>
+      <li><label>特殊要求：</label><%= @conventioner.room_requirement %></li>
+    </ul>
+  <% elsif @conventioner.chummage? %>
+    <ul>
+      <li><label>入住酒店：</label><%= @conventioner.hotel.name %>（与他人合住）</li>
+    </ul>
   <% else %>
     <ul>
       <li><label>住宿状态：</label><span class="cred">不需要住宿</span></li>
@@ -107,6 +123,6 @@
 <div class="operation-generic">
   <% permissable_for [User::ROLE_EMPLOYEE, User::ROLE_VOLUNTEER] do %><%= link_to '现在进行签到', register_conventioner_path(@conventioner), :class => 'button' unless @conventioner.registered? %><% end %>
   <% permissable_for [User::ROLE_EMPLOYEE] do %><%= link_to '编辑', edit_conventioner_path(@conventioner), :class => 'button' %><% end %>
-  <% permissable_for [User::ROLE_EMPLOYEE] do %><%= link_to '删除', @conventioner, :method => :delete, :confirm => '确定删除该记录？', :class => 'button' %><% end %>
+  <% permissable_for [User::ROLE_ADMIN] do %><%= link_to '删除', @conventioner, :method => :delete, :confirm => '确定删除该记录？', :class => 'button' %><% end %>
   <%= link_to '返回参会代表列表', conventioners_path, :class => 'button' %>
 </div>

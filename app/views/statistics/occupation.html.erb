@@ -10,6 +10,12 @@
   </fieldset>
 <% end %>
 <fieldset class="form-generic">
+  <legend>与他人合住</legend>
+  <ul>
+    <li><label>代表信息：</label>共<%= link_to @chummage_conventioners.size, chummage_conventioners_path, :target => '_blank' %>人</li>
+  </ul>
+</fieldset>
+<fieldset class="form-generic">
   <legend>不安排住宿</legend>
   <ul>
     <li><label>代表信息：</label>共<%= link_to @unoccupied_conventioners.size, unoccupied_conventioners_path, :target => '_blank' %>人</li>

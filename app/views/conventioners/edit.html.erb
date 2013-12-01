@@ -19,7 +19,13 @@
       <li><label>入住酒店及房型：</label><%= f.select :room_id, option_groups_from_collection_for_select(all_hotels, :rooms, :name, :id, :name_with_details, (@conventioner.occupied? ? @conventioner.room.id : nil)), :include_blank => '不需要住宿' %></li>
     </ul>
     <ul>
+      <li><label>合住酒店：</label><%= f.collection_select :hotel_id, all_hotels, :id, :name, :prompt => '不与他人合住' %></li>
+    </ul>
+    <ul>
       <li><label>房间号：</label><%= f.text_field :room_number, :class => 'text-field small' %></li>
+    </ul>
+    <ul>
+      <li><label>特殊要求：</label><%= f.text_field :room_requirement, :class => 'text-field' %></li>
     </ul>
     <ul>
       <li><label>工作单位：</label><%= f.text_field :work_unit, :class => 'text-field' %></li>
@@ -31,10 +37,13 @@
       <li><label>电子邮件：</label><%= f.text_field :email, :class => 'text-field' %></li>
     </ul>
     <ul>
+      <li><label>联系电话：</label><%= f.text_field :phone, :class => 'text-field' %></li>
+    </ul>
+    <ul>
       <li><label>代表类型1：</label><%= f.radio_button :from, Conventioner::FROM_DOMESTIC %>国内代表 <%= f.radio_button :from, Conventioner::FROM_FOREIGN %>国外代表 <%= f.radio_button :from, Conventioner::FROM_CONSULATE %>使领馆代表</li>
     </ul>
     <ul>
-      <li><label>代表类型2：</label><%= f.radio_button :nonvoting, false %>普通代表 <%= f.radio_button :nonvoting, true %>列席代表</li>
+      <li><label>代表类型2：</label><%= f.radio_button :nonvoting, false %>大会代表 <%= f.radio_button :nonvoting, true %>列席代表</li>
     </ul>
     <ul>
       <li><label>代表身份：</label><span class="no-warp-content"><%= raw human_identities_for @conventioner %></span></li><div class="cb"></div>
@@ -52,13 +61,13 @@
       <li><label>航班号：</label><%= f.text_field :return_flight_number, :class => 'text-field small' %></li>
     </ul>
     <ul>
-      <li><label>开幕式座位：</label><%= f.text_field :opening_seat, :class => 'text-field' %>
-    </ul>
-    <ul>
-      <li><label>演出座位：</label><%= f.text_field :show_seat, :class => 'text-field' %></li>
+      <li><label>开幕式座位：</label><%= f.text_field :opening_seat, :class => 'text-field small' %>
     </ul>
     <ul>
       <li><label>项目官员：</label><%= f.text_field :person_in_charge, :class => 'text-field' %></li>
+    </ul>
+    <ul>
+      <li><label>公自付：</label><%= f.text_field :payment, :class => 'text-field' %></li>
     </ul>
     <ul>
       <li><label>备注：</label><%= f.text_area :remark, :class => 'text-area' %></li>

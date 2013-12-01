@@ -2,7 +2,7 @@
 class TitlesController < ApplicationController
   
   def index
-    @titles = Title.paginate :page => params[:page]
+    @titles = Title.sorted.paginate :page => params[:page]
   end
   
   def show

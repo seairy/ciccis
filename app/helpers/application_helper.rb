@@ -120,11 +120,23 @@ module ApplicationHelper
   end
   
   def human_hotel_for conventioner
-    conventioner.room.blank? ? '不需要住宿' : "#{conventioner.room.hotel.name}"
+    if !conventioner.room.blank?
+      "#{conventioner.room.hotel.name}"
+    elsif !conventioner.hotel.blank?
+      "#{conventioner.hotel.name}（与他人合住）"
+    else
+      '不需要住宿'
+    end
   end
   
   def human_hotel_and_room_for conventioner
-    conventioner.room.blank? ? '不需要住宿' : "#{conventioner.room.hotel.name}，#{conventioner.room.name}"
+    if !conventioner.room.blank?
+      "#{conventioner.room.hotel.name}，#{conventioner.room.name}"
+    elsif !conventioner.hotel.blank?
+      "#{conventioner.hotel.name}（与他人合住）"
+    else
+      '不需要住宿'
+    end
   end
   
   def human_register_for registered_at
@@ -152,11 +164,11 @@ module ApplicationHelper
   end
   
   def human_identities_for conventioner
-    Title.all.map{ |t| (conventioner.identities.where(title_id:t.id).first.blank? ? check_box_tag('title_ids[]', t.id) : check_box_tag('title_ids[]', t.id, :checked => true)) + t.name }.join ' / '
+    Title.sorted.all.map{ |t| (conventioner.identities.where(title_id:t.id).first.blank? ? check_box_tag('title_ids[]', t.id) : check_box_tag('title_ids[]', t.id, :checked => true)) + t.name }.join ' / '
   end
   
   def human_nonvoting_for nonvoting
-    nonvoting ? '列席代表' : '普通代表'
+    nonvoting ? '列席代表' : '大会代表'
   end
   
   def human_seat_for seat
