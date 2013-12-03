@@ -21,6 +21,15 @@
       <li><label>合住酒店：</label><%= f.collection_select :hotel_id, all_hotels, :id, :name, :prompt => '不与他人合住' %></li>
     </ul>
     <ul>
+      <li><label>房间号：</label><%= f.text_field :room_number, :class => 'text-field small' %></li>
+    </ul>
+    <ul>
+      <li><label>是否吸烟：</label><%= f.radio_button :smoking, true %>吸烟 <%= f.radio_button :smoking, false %>不吸烟 </li>
+    </ul>
+    <ul>
+      <li><label>特殊要求：</label><%= f.text_field :room_requirement, :class => 'text-field' %></li>
+    </ul>
+    <ul>
       <li><label>工作单位：</label><%= f.text_field :work_unit, :class => 'text-field' %></li>
     </ul>
     <ul>
