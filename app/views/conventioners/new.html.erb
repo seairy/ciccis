@@ -18,7 +18,7 @@
       <li><label>入住酒店及房型：</label><%= f.select :room_id, option_groups_from_collection_for_select(all_hotels, :rooms, :name, :id, :name_with_details), :prompt => '不需要住宿' %></li>
     </ul>
     <ul>
-      <li><label>合住酒店：</label><%= f.collection_select :hotel_id, all_hotels, :id, :name, :prompt => '不与他人合住' %></li>
+      <li><label>合住酒店：</label><%= f.collection_select :hotel_id, all_hotels, :id, :name, :include_blank => '不与他人合住' %></li>
     </ul>
     <ul>
       <li><label>房间号：</label><%= f.text_field :room_number, :class => 'text-field small' %></li>
