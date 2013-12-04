@@ -200,4 +200,36 @@ class ConventionersController < ApplicationController
       redirect_to @conventioner
     end
   end
+  
+  def update_opening_seats
+    @error_messages = []
+    @unchange_seats = 0
+    @changed_seats = 0
+    if request.post?
+      params[:opening_seats].each_line do |opening_seat|
+        array = opening_seat.chop.split('，')
+        if array.size != 3
+          @error_messages << ["格式错误", "#{opening_seat}"] 
+          next
+        else
+          result = Conventioner.where(chinese_name: array[0]).where(foreign_name: array[1]).all
+          if (array[0].blank? and array[1].blank?) or result.size == 0
+            @error_messages << ["参会代表不存在", "#{opening_seat}"] 
+          elsif result.size > 1
+            @error_messages << ["姓名重复", "#{opening_seat}"] 
+          elsif result.size == 1
+            conventioner = result.first
+            if conventioner.opening_seat == array[2]
+              @unchange_seats += 1
+            else
+              conventioner.opening_seat = array[2]
+              conventioner.save
+              @changed_seats += 1
+            end
+          end
+        end
+      end
+      render 'update_opening_seats_result'
+    end
+  end
 end

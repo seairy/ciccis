@@ -1,0 +1,17 @@
+<h1>批量更新开幕式座位</h1>
+<fieldset class="form-generic">
+  <ul>
+    <li><label>未变更：</label><%= @unchange_seats %>人</li>
+  </ul>
+  <ul>
+    <li><label>已变更：</label><%= @changed_seats %>人</li>
+  </ul>
+  <% @error_messages.each do |error_message| %>
+  <ul>
+    <li><label><%= error_message[0] %>：</label><%= error_message[1] %></li>
+  </ul>
+  <% end %>
+</fieldset>
+<div class="operation-generic">
+  <%= link_to '返回', update_opening_seats_conventioners_path, :class => 'button' %>
+</div>

@@ -1,0 +1,11 @@
+<h1>批量更新开幕式座位</h1>
+<%= form_tag update_opening_seats_conventioners_path, id: 'update_opening_seats', method: 'POST' do |f| %>
+  <fieldset class="form-generic">
+    <ul>
+      <li><label>更新数据：</label><%= text_area_tag :opening_seats, nil, :class => 'text-area' %></li>
+    </ul>
+  </fieldset>
+  <div class="operation-generic">
+    <%= link_to '批量更新', '#', :onclick => "submitForm('update_opening_seats')", :class => 'button' %>
+  </div>
+<% end %>
