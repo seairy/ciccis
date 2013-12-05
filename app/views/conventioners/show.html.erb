@@ -89,16 +89,19 @@
       <li><label>领取会议材料：</label><%= human_taken_for @conventioner.stuff_taken %></li>
     </ul>
     <ul>
+      <li><label>是否参加总部咨询会：</label><%= human_boolean_for @conventioner.attend_consultation? %></li>
+    </ul>
+    <ul>
       <li><label>是否参加开幕式：</label><%= human_boolean_for @conventioner.attend_opening? %></li>
     </ul>
     <ul>
-      <li><label>是否参加演出：</label><%= human_boolean_for @conventioner.attend_show? %></li>
+      <li><label>是否参加优秀案例论坛：</label><%= human_boolean_for @conventioner.attend_testcase? %></li>
     </ul>
     <ul>
       <li><label>是否参加晚宴：</label><%= human_boolean_for @conventioner.attend_banquet? %></li>
     </ul>
     <ul>
-      <li><label>是否参加说明会：</label><%= human_boolean_for @conventioner.attend_explanation? %></li>
+      <li><label>是否参加校长论坛：</label><%= human_boolean_for @conventioner.attend_president? %></li>
     </ul>
     <ul>
       <li><label>是否参加闭幕式：</label><%= human_boolean_for @conventioner.attend_closing? %></li>

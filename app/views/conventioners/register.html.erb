@@ -80,16 +80,19 @@
       <li><label>领取会议材料：</label><%= radio_button :conventioner, :stuff_taken, 1, :checked => true %>领取 <%= radio_button :conventioner, :stuff_taken, 0 %>未领取</li>
     </ul>
     <ul>
+      <li><label>是否参加总部咨询会：</label><%= radio_button :conventioner, :attend_consultation, 1 %>参加 <%= radio_button :conventioner, :attend_consultation, 0 %>不参加</li>
+    </ul>
+    <ul>
       <li><label>是否参加开幕式：</label><%= radio_button :conventioner, :attend_opening, 1 %>参加 <%= radio_button :conventioner, :attend_opening, 0 %>不参加</li>
     </ul>
     <ul>
-      <li><label>是否参加演出：</label><%= radio_button :conventioner, :attend_show, 1 %>参加 <%= radio_button :conventioner, :attend_show, 0 %>不参加</li>
+      <li><label>是否参加优秀案例论坛：</label><%= radio_button :conventioner, :attend_testcase, 1 %>参加 <%= radio_button :conventioner, :attend_testcase, 0 %>不参加</li>
     </ul>
     <ul>
       <li><label>是否参加晚宴：</label><%= radio_button :conventioner, :attend_banquet, 1 %>参加 <%= radio_button :conventioner, :attend_banquet, 0 %>不参加</li>
     </ul>
     <ul>
-      <li><label>是否参加说明会：</label><%= radio_button :conventioner, :attend_explanation, 1 %>参加 <%= radio_button :conventioner, :attend_explanation, 0 %>不参加</li>
+      <li><label>是否参加校长论坛：</label><%= radio_button :conventioner, :attend_president, 1 %>参加 <%= radio_button :conventioner, :attend_president, 0 %>不参加</li>
     </ul>
     <ul>
       <li><label>是否参加闭幕式：</label><%= radio_button :conventioner, :attend_closing, 1 %>参加 <%= radio_button :conventioner, :attend_closing, 0 %>不参加</li>
