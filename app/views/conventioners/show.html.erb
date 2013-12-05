@@ -52,6 +52,20 @@
   <ul>
     <li class="seat"><label>开幕式座位：</label><%= human_seat_for @conventioner.opening_seat %></li>
   </ul>
+  <% if @conventioner.culture_suite_required? %>
+  <ul>
+    <li class="culture-suite">
+      <label>文化用品调查表：</label>
+      <% if @conventioner.culture_suite_taken? %>
+      已领取，<span>类型<%= @conventioner.culture_suite_type %></span>
+      <% elsif !@conventioner.culture_suite_taken_by_colleague.blank? %>
+      同孔院<%= link_to @conventioner.culture_suite_taken_by_colleague.human_name, @conventioner.culture_suite_taken_by_colleague %>已领取，<span>类型<%= @conventioner.culture_suite_type %></span>
+      <% else %>
+      未领取，<span>类型<%= @conventioner.culture_suite_type %></span>
+      <% end %>
+    </li>
+  </ul>
+  <% end %>
   <ul>
     <li><label>项目官员：</label><%= @conventioner.person_in_charge %></li>
   </ul>

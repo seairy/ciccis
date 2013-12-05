@@ -26,6 +26,9 @@
     <li><label>电子邮件：</label><%= @conventioner.email %></li>
   </ul>
   <ul>
+    <li><label>联系电话：</label><%= @conventioner.phone %></li>
+  </ul>
+  <ul>
     <li><label>代表类型1：</label><%= human_from_for @conventioner.from %></li>
   </ul>
   <ul>
@@ -35,20 +38,34 @@
     <li><label>代表身份：</label><%= @conventioner.titles.map{|t| t.name}.join '，' %></li>
   </ul>
   <ul>
-    <li><label>抵京时间：</label><%= human_datetime_for @conventioner.arrived_at %></li>
+    <li><label>抵京时间：</label><%= human_date_for @conventioner.arrived_at %></li>
   </ul>
   <ul>
     <li><label>航班号：</label><%= @conventioner.flight_number %></li>
   </ul>
   <ul>
-    <li><label>离京时间：</label><%= human_datetime_for @conventioner.returned_at %></li>
+    <li><label>离京时间：</label><%= human_date_for @conventioner.returned_at %></li>
+  </ul>
+  <ul>
+    <li><label>航班号：</label><%= @conventioner.return_flight_number %></li>
   </ul>
   <ul>
     <li class="seat"><label>开幕式座位：</label><%= human_seat_for @conventioner.opening_seat %></li>
   </ul>
+  <% if @conventioner.culture_suite_required? %>
   <ul>
-    <li class="seat"><label>演出座位：</label><%= human_seat_for @conventioner.show_seat %></li>
+    <li class="culture-suite">
+      <label>文化用品调查表：</label>
+      <% if @conventioner.culture_suite_taken? %>
+      已领取，<span>类型<%= @conventioner.culture_suite_type %></span>
+      <% elsif !@conventioner.culture_suite_taken_by_colleague.blank? %>
+      同孔院<%= link_to @conventioner.culture_suite_taken_by_colleague.human_name, @conventioner.culture_suite_taken_by_colleague %>已领取，<span>类型<%= @conventioner.culture_suite_type %></span>
+      <% else %>
+      未领取，<span>类型<%= @conventioner.culture_suite_type %></span>
+      <% end %>
+    </li>
   </ul>
+  <% end %>
   <ul>
     <li><label>项目官员：</label><%= @conventioner.person_in_charge %></li>
   </ul>
@@ -77,6 +94,14 @@
     <ul>
       <li><label>是否参加闭幕式：</label><%= radio_button :conventioner, :attend_closing, 1 %>参加 <%= radio_button :conventioner, :attend_closing, 0 %>不参加</li>
     </ul>
+    <% if @conventioner.culture_suite_required? and !@conventioner.culture_suite_taken? and @conventioner.culture_suite_taken_by_colleague.blank? %>
+    <ul>
+      <li class="culture-suite">
+        <label>领取文化用品调查表：</label>
+        <%= radio_button :conventioner, :culture_suite_taken, 1 %>领取 <%= radio_button :conventioner, :culture_suite_taken, 0 %>不领取</li>
+      </li>
+    </ul>
+    <% end %>
   </fieldset>
   <fieldset class="form-generic">
     <legend>住宿信息</legend>

@@ -159,6 +159,11 @@ fieldset.form-generic ul li.seat span {
 	color: red;
 	font-weight: bold;
 }
+fieldset.form-generic ul li.culture-suite span {
+	font-size: 16px;
+	color: red;
+	font-weight: bold;
+}
 fieldset.form-generic ul li label {
 	display: inline-block;
 	width: 140px;

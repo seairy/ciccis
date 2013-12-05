@@ -76,6 +76,14 @@ class Conventioner < ActiveRecord::Base
     end
   end
   
+  def culture_suite_taken_by_colleague
+    taken_conventioner = nil
+    Conventioner.where(confucius_institute: self.confucius_institute).each do |conventioner|
+      taken_conventioner = conventioner if conventioner.culture_suite_taken?
+    end
+    taken_conventioner
+  end
+  
   class << self
     def search keyword
       conventioner_ids = Country.named(keyword).inject([]){|a, c| a << c.conventioners.collect{|co| co.id}}
