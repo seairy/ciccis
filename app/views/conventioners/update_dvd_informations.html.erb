@@ -1,0 +1,11 @@
+<h1>批量更新光盘包信息</h1>
+<%= form_tag update_dvd_informations_conventioners_path, id: 'update_dvd_informations', method: 'POST' do |f| %>
+  <fieldset class="form-generic">
+    <ul>
+      <li><label>更新数据：</label><%= text_area_tag :dvd_informations, nil, :class => 'text-area' %></li>
+    </ul>
+  </fieldset>
+  <div class="operation-generic">
+    <%= link_to '批量更新', '#', :onclick => "submitForm('update_dvd_informations')", :class => 'button' %>
+  </div>
+<% end %>

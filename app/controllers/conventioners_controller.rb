@@ -232,4 +232,32 @@ class ConventionersController < ApplicationController
       render 'update_opening_seats_result'
     end
   end
+  
+  def update_dvd_informations
+    @error_messages = []
+    @changed_conventioners = 0
+    if request.post?
+      params[:dvd_informations].each_line do |dvd_information|
+        array = dvd_information.chop.split('，')
+        if array.size != 2
+          @error_messages << ["格式错误", "[array.size:#{array.size}]#{dvd_information}"] 
+          next
+        else
+          result = Conventioner.where(chinese_name: array[0]).where(foreign_name: array[1]).all
+          if (array[0].blank? and array[1].blank?) or result.size == 0
+            @error_messages << ["参会代表不存在", "#{dvd_information}"] 
+          elsif result.size > 1
+            @error_messages << ["姓名重复", "#{dvd_information}"] 
+          elsif result.size == 1
+            conventioner = result.first
+            conventioner.dvd_required = true
+            conventioner.dvd_taken = false
+            conventioner.save
+            @changed_conventioners += 1
+          end
+        end
+      end
+      render 'update_dvd_informations_result'
+    end
+  end
 end
