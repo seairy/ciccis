@@ -19,3 +19,11 @@ unoccupied_sheet.row(0).concat ["ID", "洲", "国家", "中文名", "英文名",
   unoccupied_sheet.update_row i+1, c.id, c.country.continent.name, c.country.name, c.chinese_name, c.foreign_name, c.confucius_institute, c.work_unit, c.position_in_wn, c.position_in_ci, c.email, human_from_for(c.from), human_nonvoting_for(c.nonvoting?), c.titles.map{|t| t.name}.join('，'), human_date_for(c.arrived_at), c.flight_number, human_date_for(c.returned_at), c.return_flight_number, human_plain_seat_for(c.opening_seat), human_plain_seat_for(c.show_seat), human_plain_register_for(c.registered_at), human_boolean_for(c.attend_opening), human_boolean_for(c.attend_show), human_boolean_for(c.attend_explanation), human_boolean_for(c.attend_banquet), human_boolean_for(c.attend_closing), c.person_in_charge, c.remark
 end
 unoccupied_sheet.row(0).default_format = bold
+
+chummage_sheet = xls.create_worksheet
+chummage_sheet.name = '与他人合住'
+chummage_sheet.row(0).concat ["ID", "合住酒店", "洲", "国家", "中文名", "英文名", "所属孔院", "工作单位", "所在机构任职", "孔院任职", "电子邮件", "代表类型1", "代表类型2", "代表身份", "抵京时间", "航班号", "离京时间", "航班号", "开幕式座位", "演出座位", "签到时间", "是否出席开幕式", "是否出席演出", "是否出席说明会", "是否出席晚宴", "是否出席闭幕式", "项目官员", "备注"]
+@chummage_conventioners.ordered.each_with_index do |c, i|
+  chummage_sheet.update_row i+1, c.id, c.hotel.name, c.country.continent.name, c.country.name, c.chinese_name, c.foreign_name, c.confucius_institute, c.work_unit, c.position_in_wn, c.position_in_ci, c.email, human_from_for(c.from), human_nonvoting_for(c.nonvoting?), c.titles.map{|t| t.name}.join('，'), human_date_for(c.arrived_at), c.flight_number, human_date_for(c.returned_at), c.return_flight_number, human_plain_seat_for(c.opening_seat), human_plain_seat_for(c.show_seat), human_plain_register_for(c.registered_at), human_boolean_for(c.attend_opening), human_boolean_for(c.attend_show), human_boolean_for(c.attend_explanation), human_boolean_for(c.attend_banquet), human_boolean_for(c.attend_closing), c.person_in_charge, c.remark
+end
+chummage_sheet.row(0).default_format = bold

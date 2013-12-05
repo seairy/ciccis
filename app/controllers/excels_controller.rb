@@ -4,6 +4,7 @@ class ExcelsController < ApplicationController
   
   def all_conventioners
     @hotels = Hotel.all
+    @chummage_conventioners = Conventioner.chummage
     @unoccupied_conventioners = Conventioner.unoccupied
   end
 end
