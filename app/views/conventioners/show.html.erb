@@ -52,6 +52,9 @@
   <ul>
     <li class="seat"><label>开幕式座位：</label><%= human_seat_for @conventioner.opening_seat %></li>
   </ul>
+  <ul>
+    <li class="seat"><label>光盘包：</label><span><%= human_boolean_for @conventioner.dvd_required? %></span></li>
+  </ul>
   <% if @conventioner.culture_suite_required? %>
   <ul>
     <li class="culture-suite">
