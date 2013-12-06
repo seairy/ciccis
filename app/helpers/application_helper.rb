@@ -179,6 +179,10 @@ module ApplicationHelper
     seat.blank? ? '未安排座位' : seat
   end
   
+  def human_culture_suite_for conventioner
+    conventioner.culture_suite_required? ? "类型#{conventioner.culture_suite_type}" : '不需要'
+  end
+  
   def all_continents
     Continent.all
   end

@@ -64,7 +64,13 @@
       <li><label>航班号：</label><%= f.text_field :return_flight_number, :class => 'text-field small' %></li>
     </ul>
     <ul>
-      <li><label>开幕式座位：</label><%= f.text_field :opening_seat, :class => 'text-field small' %>
+      <li><label>开幕式座位：</label><%= f.text_field :opening_seat, :class => 'text-field small' %></li>
+    </ul>
+    <ul>
+      <li><label>光盘包：</label><span><%= f.check_box :dvd_required %></span></li>
+    </ul>
+    <ul>
+      <li><label>文化用品调查表：</label><span><%= f.check_box :culture_suite_required %></span></li>
     </ul>
     <ul>
       <li><label>项目官员：</label><%= f.text_field :person_in_charge, :class => 'text-field' %></li>
@@ -80,22 +86,25 @@
     <fieldset class="form-generic">
       <legend>签到信息</legend>
       <ul>
-        <li><label>领取会议材料：</label><%= f.radio_button :stuff_taken, true %>领取 <%= f.radio_button :stuff_taken, false %>未领取</li>
+        <li><label>领取会议材料：</label><%= radio_button :conventioner, :stuff_taken, true %>领取 <%= radio_button :conventioner, :stuff_taken, false %>未领取</li>
       </ul>
       <ul>
-        <li><label>是否参加开幕式：</label><%= f.radio_button :attend_opening, true %>参加 <%= f.radio_button :attend_opening, false %>不参加</li>
+        <li><label>是否参加总部咨询会：</label><%= radio_button :conventioner, :attend_consultation, true %>参加 <%= radio_button :conventioner, :attend_consultation, false %>不参加</li>
       </ul>
       <ul>
-        <li><label>是否参加演出：</label><%= f.radio_button :attend_show, true %>参加 <%= f.radio_button :attend_show, false %>不参加</li>
+        <li><label>是否参加开幕式：</label><%= radio_button :conventioner, :attend_opening, true %>参加 <%= radio_button :conventioner, :attend_opening, false %>不参加</li>
       </ul>
       <ul>
-        <li><label>是否参加晚宴：</label><%= f.radio_button :attend_banquet, true %>参加 <%= f.radio_button :attend_banquet, false %>不参加</li>
+        <li><label>是否参加优秀案例论坛：</label><%= radio_button :conventioner, :attend_testcase, true %>参加 <%= radio_button :conventioner, :attend_testcase, false %>不参加</li>
       </ul>
       <ul>
-        <li><label>是否参加说明会：</label><%= f.radio_button :attend_explanation, true %>参加 <%= f.radio_button :attend_explanation, false %>不参加</li>
+        <li><label>是否参加晚宴：</label><%= radio_button :conventioner, :attend_banquet, true %>参加 <%= radio_button :conventioner, :attend_banquet, false %>不参加</li>
       </ul>
       <ul>
-        <li><label>是否参加闭幕式：</label><%= f.radio_button :attend_closing, true %>参加 <%= f.radio_button :attend_closing, false %>不参加</li>
+        <li><label>是否参加校长论坛：</label><%= radio_button :conventioner, :attend_president, true %>参加 <%= radio_button :conventioner, :attend_president, false %>不参加</li>
+      </ul>
+      <ul>
+        <li><label>是否参加闭幕式：</label><%= radio_button :conventioner, :attend_closing, true %>参加 <%= radio_button :conventioner, :attend_closing, false %>不参加</li>
       </ul>
     </fieldset>
   <% end %>
